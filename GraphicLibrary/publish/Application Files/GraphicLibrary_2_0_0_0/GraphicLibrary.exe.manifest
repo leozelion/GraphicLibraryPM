@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="GraphicLibrary.exe" version="2.0.0.0" publicKeyToken="8a339434156e6391" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="GraphicLibrary" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="GraphicLibrary.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Параметры манифеста UAC
+          При необходимости изменить уровень управления учетными записями Windows замените 
+          узел requestedExecutionLevel одним из следующих значений.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+        Если вы хотите использовать виртуализацию файлов и реестра для обратной
+             совместимости, удалите узел requestedExecutionLevel.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GraphicLibrary.exe" size="97176">
+      <assemblyIdentity name="GraphicLibrary" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>32tlUYmQob4884iQvqVg3J2Tvo8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SlimDX.dll" size="3801600">
+      <assemblyIdentity name="SlimDX" version="2.0.13.43" publicKeyToken="B1B0C32FD1FFE4F9" language="neutral" processorArchitecture="amd64" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>uomhdVwYr8UFNe6N4t2dcbq/ah8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="GraphicLibrary.exe.config" size="117">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>a3Forh+i+nzyaONrpGeK7Sudu10=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=LEVZADUMKIN\Lev" issuerKeyHash="cc2c9d8b88de87da3708be7e4b483d7908c633d7" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>F2ialYKH9vHD1h1A0KN2v2u6SlI=</DigestValue></Reference></SignedInfo><SignatureValue>XcwqtPOp9Ujyspj5F41PVXz27kqkMG/nkAkN9ED315D1unOuu1Y8lhLUS5nODCgHxmySlo6hVdC3p7gX1YMbtNX8IKoDz3tayvfHXHumhKlAsqIgYdyanH4jZ2jD80L00w9Qi85Aoi3V1CFtj0/GwYGAT5ITuBQbjw8tl+jvpDY=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>otQNl6qN+hKjEcEaRCmU2YTTTDoL/k0oPjVzSAbviXLTt7mYgVPi6qFrxXpjHLJ/QSZMqxMR+TvgMbi5KcewONJy/BH0fiOItkt5aifvaAR/PUyoh/cOIYaG1kVBp0TmHuvBxdziHAs5lvlFqP4/RhmKBVsCRA+jqTm0ivP5RAU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="524aba6bbf76a3d0401dd6c3f1f68782959a6817" Description="" Url=""><as:assemblyIdentity name="GraphicLibrary.exe" version="2.0.0.0" publicKeyToken="8a339434156e6391" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=LEVZADUMKIN\Lev</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>OXIA0//JTr3lfxC0sE9j8HLDhD4=</DigestValue></Reference></SignedInfo><SignatureValue>ic5MB9JBrheRl5F73OAXs8aEioHwbnim3SsJ7ZMy/FC3BZtFr7NXS01KYcj6a8cxTugQGgmfPw3jjhrZY/NRerifMy8IalZKb6P5FOMFeRNcVDBVb+q+5LT7cHoXDgNi0BMU5H/er04vssCSFqW9HApYXiH2vyeovjX2/BG4AwA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>otQNl6qN+hKjEcEaRCmU2YTTTDoL/k0oPjVzSAbviXLTt7mYgVPi6qFrxXpjHLJ/QSZMqxMR+TvgMbi5KcewONJy/BH0fiOItkt5aifvaAR/PUyoh/cOIYaG1kVBp0TmHuvBxdziHAs5lvlFqP4/RhmKBVsCRA+jqTm0ivP5RAU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB1TCCAT6gAwIBAgIQEe73LIqQBqlKVdEseN4CBjANBgkqhkiG9w0BAQUFADApMScwJQYDVQQDHh4ATABFAFYAWgBBAEQAVQBNAEsASQBOAFwATABlAHYwHhcNMTYwMjI2MDg0MjU0WhcNMTcwMjI1MTQ0MjU0WjApMScwJQYDVQQDHh4ATABFAFYAWgBBAEQAVQBNAEsASQBOAFwATABlAHYwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKLUDZeqjfoSoxHBGkQplNmE00w6C/5NKD41c0gG74ly07e5mIFT4uqha8V6Yxyyf0EmTKsTEfk74DG4uSnHsDjScvwR9H4jiLZLeWon72gEfz1MqIf3DiGGhtZFQadE5h7rwcXc4hwLOZb5Raj+P0YZigVbAkQPo6k5tIrz+UQFAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEADjxxFyGaQDvAk5nqCtL/8iRfVTFx1p3EwgmaT5o/T1sZESDTQ+uNPYRlSWjHcUkMHw+pdo+nNR3w5kNFazc0VxjAYtpgVRTADRaJrdVn8BGfgXqTJ9LsaWyQdkIpF5xzwSsWnImJ/ny1YI0BbT25GNJ/P1YiHJdNHL0tF6GtiJc=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

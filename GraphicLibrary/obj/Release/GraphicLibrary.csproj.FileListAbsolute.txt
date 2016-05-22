@@ -1,0 +1,131 @@
+C:\Documents and Settings\aseev_av\Мои документы\Visual Studio 2008\Projects\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\aseev_av\Мои документы\Visual Studio 2008\Projects\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Documents and Settings\aseev_av\Мои документы\Visual Studio 2008\Projects\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Documents and Settings\aseev_av\Мои документы\Visual Studio 2008\Projects\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csproj.GenerateResource.Cache
+C:\Documents and Settings\aseev_av\Мои документы\Visual Studio 2008\Projects\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Documents and Settings\aseev_av\Мои документы\Visual Studio 2008\Projects\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Documents and Settings\aseev_av\Мои документы\Visual Studio 2008\Projects\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Documents and Settings\aseev_av\Мои документы\Visual Studio 2008\Projects\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.read.1.tlog
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.write.1.tlog
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+E:\___Прогание___\Оболочки\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\Users\Елена\Documents\Visual Studio 2010\Projects\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.write.1.tlog
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.read.1.tlog
+E:\Асеев АВ\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.write.1.tlog
+G:\ГАСУ\отчёт по оболочкам\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+G:\ГАСУ\отчёт по оболочкам\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.read.1.tlog
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.write.1.tlog
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+E:\___Прогание___\Оболочки\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Users\Елена\Desktop\GraphicLibraryLast\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\obj\Release\ResGen.read.1.tlog
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\obj\Release\ResGen.write.1.tlog
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Users\Alexey\Desktop\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\ResGen.read.1.tlog
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\aseev_av\Desktop\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\ResGen.write.1.tlog
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\ResGen.read.1.tlog
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\Users\Admin\Desktop\Асеев2\2\отчёт по визуализации оболочек\ПО\GraphicLibrary\GraphicLibrary\obj\Release\ResGen.write.1.tlog
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\ResolveAssemblyReference.cache
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\ResGen.read.1.tlog
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\ResGen.write.1.tlog
+e:\DIPLOM\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe.config
+D:\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe.config
+D:\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+D:\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+D:\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csprojResolveAssemblyReference.cache
+D:\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+D:\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+D:\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csproj.GenerateResource.Cache
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe.config
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csproj.GenerateResource.Cache
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Users\Lev\Desktop\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe.config
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Users\Lev\Desktop\Карпов и КО\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csproj.GenerateResource.Cache
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe.config
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.exe
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.pdb
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.exe
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\GraphicLibrary.pdb
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\Graphic.Form1.resources
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.Properties.Resources.resources
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Release\GraphicLibrary.csproj.GenerateResource.Cache
+C:\Users\Lev\SkyDrive\КАРПОВ и Ко\наши проги\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\bin\Release\SlimDX.dll
