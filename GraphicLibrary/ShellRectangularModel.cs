@@ -1,5 +1,5 @@
-﻿using SlimDX.Direct3D9;
-using SlimDX;
+﻿using SlimDX;
+using SlimDX.Direct3D11;
 using System.Drawing;
 using System;
 using System.Collections.Generic;
@@ -44,21 +44,21 @@ namespace Graphic
         VertexDeclarations.PositionNormalVertex[] vertexesEdgeRightDefected;
 
         Device device;
-        VertexBuffer vbTop;
-        VertexBuffer vbTopDefected;
-        VertexBuffer vbBottom;
-        VertexBuffer vbBottomDefected;
-        VertexBuffer vbEdgeFront;
-        VertexBuffer vbEdgeFrontDefected;
-        VertexBuffer vbEdgeBack;
-        VertexBuffer vbEdgeBackDefected;
-        VertexBuffer vbEdgeLeft;
-        VertexBuffer vbEdgeLeftDefected;
-        VertexBuffer vbEdgeRight;
-        VertexBuffer vbEdgeRightDefected;
-        IndexBuffer ibTopMiddleBottom;
-        IndexBuffer ibEdgeFrontBack;
-        IndexBuffer ibEdgeLeftRight;
+        SlimDX.Direct3D11.Buffer vbTop;
+        SlimDX.Direct3D11.Buffer vbTopDefected;
+        SlimDX.Direct3D11.Buffer vbBottom;
+        SlimDX.Direct3D11.Buffer vbBottomDefected;
+        SlimDX.Direct3D11.Buffer vbEdgeFront;
+        SlimDX.Direct3D11.Buffer vbEdgeFrontDefected;
+        SlimDX.Direct3D11.Buffer vbEdgeBack;
+        SlimDX.Direct3D11.Buffer vbEdgeBackDefected;
+        SlimDX.Direct3D11.Buffer vbEdgeLeft;
+        SlimDX.Direct3D11.Buffer vbEdgeLeftDefected;
+        SlimDX.Direct3D11.Buffer vbEdgeRight;
+        SlimDX.Direct3D11.Buffer vbEdgeRightDefected;
+        SlimDX.Direct3D11.Buffer ibTopMiddleBottom;
+        SlimDX.Direct3D11.Buffer ibEdgeFrontBack;
+        SlimDX.Direct3D11.Buffer ibEdgeLeftRight;
 
         //коэф-т анимации
         float direction = 1;
@@ -163,7 +163,7 @@ namespace Graphic
                     }
                 }
             }
-
+            
             device.VertexDeclaration = new VertexDeclaration(device, VertexDeclarations.PositionNormalVertexElements);
             device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("coef"), animationWeight);
             //верхняя поверхность
@@ -314,17 +314,17 @@ namespace Graphic
             vbEdgeRight = CreateVertexBuffer(vertexesEdgeRight);
             vbEdgeRightDefected = CreateVertexBuffer(vertexesEdgeRightDefected);
 
-            ibTopMiddleBottom = new IndexBuffer(device, sizeof(ushort) * indicesTopMiddleBottom.Length, Usage.None, Pool.Default, true);
+            ibTopMiddleBottom = new SlimDX.Direct3D11.Buffer(device, sizeof(ushort) * indicesTopMiddleBottom.Length, Usage.None, Pool.Default, true);
             DataStream dr = ibTopMiddleBottom.Lock(0, sizeof(ushort) * indicesTopMiddleBottom.Length, LockFlags.None);
             dr.WriteRange(indicesTopMiddleBottom);
             ibTopMiddleBottom.Unlock();
 
-            ibEdgeFrontBack = new IndexBuffer(device, sizeof(ushort) * indicesEdgeFrontBack.Length, Usage.None, Pool.Default, true);
+            ibEdgeFrontBack = new SlimDX.Direct3D11.Buffer(device, sizeof(ushort) * indicesEdgeFrontBack.Length, Usage.None, Pool.Default, true);
             dr = ibEdgeFrontBack.Lock(0, sizeof(ushort) * indicesEdgeFrontBack.Length, LockFlags.None);
             dr.WriteRange(indicesEdgeFrontBack);
             ibEdgeFrontBack.Unlock();
 
-            ibEdgeLeftRight = new IndexBuffer(device, sizeof(ushort) * indicesEdgeLeftRight.Length, Usage.None, Pool.Default, true);
+            ibEdgeLeftRight = new SlimDX.Direct3D11.Buffer(device, sizeof(ushort) * indicesEdgeLeftRight.Length, Usage.None, Pool.Default, true);
             dr = ibEdgeLeftRight.Lock(0, sizeof(ushort) * indicesEdgeLeftRight.Length, LockFlags.None);
             dr.WriteRange(indicesEdgeLeftRight);
             ibEdgeLeftRight.Unlock();

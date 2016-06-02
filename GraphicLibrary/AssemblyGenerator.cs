@@ -80,7 +80,7 @@ namespace Graphic
             string func = MathFunc;
             if (MathFunc.Contains("sin") || MathFunc.Contains("cos"))
             {
-                func=MathFunc.Replace("sin", "Math.Sin");
+                func = MathFunc.Replace("sin", "Math.Sin");
                 func = func.Replace("cos", "Math.Cos");
             }
             return func;

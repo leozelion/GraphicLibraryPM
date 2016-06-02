@@ -6,12 +6,17 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SlimDX.Direct3D9;
-using System.Runtime.InteropServices;
 using SlimDX;
+using SlimDX.Direct3D11;
+//
+using SlimDX.D3DCompiler;
+using SlimDX.DXGI;
+using Device = SlimDX.Direct3D11.Device;
+using Resource = SlimDX.Direct3D11.Resource;
+//
+using System.Runtime.InteropServices;
 using System.Reflection;
 using System.IO;
-using System.Threading;
 
 namespace Graphic
 {
@@ -34,9 +39,9 @@ namespace Graphic
             get { return Marshal.SizeOf(typeof(TransformedColoredVertex)); }
         }
 
-        public static VertexFormat Format
+        public static SlimDX.Direct3D9.VertexFormat Format
         {
-            get { return VertexFormat.PositionRhw | VertexFormat.Diffuse; }
+            get { return SlimDX.Direct3D9.VertexFormat.PositionRhw | SlimDX.Direct3D9.VertexFormat.Diffuse; }
         }
 
         public TransformedColoredVertex(Vector4 Position, int Color) : this()
@@ -57,9 +62,9 @@ namespace Graphic
             get { return Marshal.SizeOf(typeof(TransformedTexturedVertex)); }
         }
 
-        public static VertexFormat Format
+        public static SlimDX.Direct3D9.VertexFormat Format
         {
-            get { return VertexFormat.PositionRhw | VertexFormat.Texture1; }
+            get { return SlimDX.Direct3D9.VertexFormat.PositionRhw | SlimDX.Direct3D9.VertexFormat.Texture1; }
         }
 
         public TransformedTexturedVertex(Vector4 Position, Vector2 TextureCoordinates) : this()
@@ -80,9 +85,9 @@ namespace Graphic
             get { return Marshal.SizeOf(typeof(PositionedTexturedVertex)); }
         }
 
-        public static VertexFormat Format
+        public static SlimDX.Direct3D9.VertexFormat Format
         {
-            get { return VertexFormat.Position | VertexFormat.Texture1; }
+            get { return SlimDX.Direct3D9.VertexFormat.Position | SlimDX.Direct3D9.VertexFormat.Texture1; }
         }
 
         public PositionedTexturedVertex(Vector3 Position, Vector2 TextureCoordinates) : this()
@@ -105,9 +110,9 @@ namespace Graphic
             get { return Marshal.SizeOf(typeof(PositionedColoredNormalVertex)); }
         }
 
-        public static VertexFormat Format
+        public static SlimDX.Direct3D9.VertexFormat Format
         {
-            get { return VertexFormat.Position | VertexFormat.Normal | VertexFormat.Diffuse; }
+            get { return SlimDX.Direct3D9.VertexFormat.Position | SlimDX.Direct3D9.VertexFormat.Normal | SlimDX.Direct3D9.VertexFormat.Diffuse; }
         }
 
         public PositionedColoredNormalVertex(Vector3 Position, int Color, Vector3 Normal) : this()
@@ -126,7 +131,10 @@ namespace Graphic
     public partial class GraphicLibrary
     {
         //Устройство рисования Direct3d
-        public Device device; 
+        public Device device;
+
+        DeviceContext context;
+        SwapChain swapChain;
 
         //контрол визуализации
         Control ownerControl;
@@ -158,6 +166,7 @@ namespace Graphic
         //Шейдеры
         Dictionary<string, PixelShader> pixelShaders = new Dictionary<string, PixelShader>();
         Dictionary<string, VertexShader> vertexShaders = new Dictionary<string, VertexShader>();
+        ShaderSignature inputSignature;
 
         //стартовая инициализация
         public ReturnCode Init(Control owner_control)
@@ -195,42 +204,73 @@ namespace Graphic
             //Surface.CreateOffscreenPlain(device,
             //    ownerControl.ClientSize.Width, ownerControl.ClientSize.Height,
             //    Format.A8R8G8B8, Pool.Scratch);
-            return device.GetBackBuffer(0, 0);
+            return Surface.FromSwapChain(swapChain, 0); //device.GetBackBuffer(0, 0);
         }
 
-        private Texture CreateTexture(Device device, int width, int height, Func<int, Color> paint)
-        {
-            //initialize a texture
-            Texture texture = new Texture(device, width, height,0,Usage.None,Format.A8R8G8B8,Pool.Scratch);
-            //the array holds the color for each pixel in the texture
-            Color[] data = new Color[width * height];
-            for (int pixel = 0; pixel < data.Count(); pixel++)
-            {
-                //the function applies the color according to the specified pixel
-                data[pixel] = paint(pixel);
-            }
-            //set the color
-//            texture.Fill(data);
+//        private Texture2D CreateTexture(Device device, int width, int height, Func<int, Color> paint)
+//        {
+//            //initialize a texture
+//            Texture2D texture = new Texture2D(device, width, height,0,
+//                Usage.RenderTargetOutput,
+//                //Usage.None,
+//                Format.R8G8B8A8_SNorm,
+//                //.A8R8G8B8,
+//                Pool.Scratch);
+//            //the array holds the color for each pixel in the texture
+//            Color[] data = new Color[width * height];
+//            for (int pixel = 0; pixel < data.Count(); pixel++)
+//            {
+//                //the function applies the color according to the specified pixel
+//                data[pixel] = paint(pixel);
+//            }
+//            //set the color
+////            texture.Fill(data);
 
-            return texture;
-        }
+//            return texture;
+//        }
 
         //инициализация и деинициализация графики
         private void InitGraphics()
         {
-            //Инициализация параметров представления
-            PresentParameters presentParams = new PresentParameters();
-            presentParams.Windowed = true;
-            presentParams.SwapEffect = SwapEffect.Discard;
-            presentParams.EnableAutoDepthStencil = true;
-            presentParams.PresentationInterval = PresentInterval.Immediate;
-            presentParams.BackBufferWidth = ownerControl.ClientSize.Width;
-            presentParams.BackBufferHeight = ownerControl.ClientSize.Height;
-            presentParams.DeviceWindowHandle = ownerControl.Handle;
 
-            //создание девайса
-            device = new Device(new Direct3D(), 0, DeviceType.Hardware, ownerControl.Handle, CreateFlags.HardwareVertexProcessing | CreateFlags.Multithreaded, presentParams);
-            device.SetRenderState(RenderState.CullMode, Cull.None);
+            var description = new SwapChainDescription()
+            {
+                BufferCount = 2,
+                Usage = Usage.RenderTargetOutput,
+                OutputHandle = ownerControl.Handle,
+                IsWindowed = true,
+                ModeDescription = new ModeDescription(0, 0, new Rational(60, 1), Format.R8G8B8A8_UNorm),
+                SampleDescription = new SampleDescription(1, 0),
+                Flags = SwapChainFlags.AllowModeSwitch,
+                SwapEffect = SwapEffect.Discard
+            };
+            Device.CreateWithSwapChain(DriverType.Hardware, DeviceCreationFlags.Debug, description, out device, out swapChain);
+            // create a view of our render target, which is the backbuffer of the swap chain we just created
+            RenderTargetView renderTarget;
+            using (var resource = Resource.FromSwapChain<Texture2D>(swapChain, 0))
+                renderTarget = new RenderTargetView(device, resource);
+
+            // setting a viewport is required if you want to actually see anything
+            var context = device.ImmediateContext;
+            var viewport = new Viewport(0.0f, 0.0f, ownerControl.ClientSize.Width, ownerControl.ClientSize.Height);
+            context.OutputMerger.SetTargets(renderTarget);
+            context.Rasterizer.SetViewports(viewport);
+
+
+
+            //Инициализация параметров представления
+            //PresentParameters presentParams = new PresentParameters();
+            //presentParams.Windowed = true;
+            //presentParams.SwapEffect = SwapEffect.Discard;
+            //presentParams.EnableAutoDepthStencil = true;
+            //presentParams.PresentationInterval = PresentInterval.Immediate;
+            //presentParams.BackBufferWidth = ownerControl.ClientSize.Width;
+            //presentParams.BackBufferHeight = ownerControl.ClientSize.Height;
+            //presentParams.DeviceWindowHandle = ownerControl.Handle;
+
+            ////создание девайса
+            //device = new Device(new Direct3D(), 0, DeviceType.Hardware, ownerControl.Handle, CreateFlags.HardwareVertexProcessing | CreateFlags.Multithreaded, presentParams);
+            //device.SetRenderState(RenderState.CullMode, Cull.None);
 
             //загрузка шейдеров
             vertexShaders.Clear();
@@ -250,20 +290,20 @@ namespace Graphic
 
                     if (resource_names[i].Contains("VertexShader"))
                     { // вершинные шейдеры
-                        shader_byte_code = ShaderBytecode.Compile(buffer, "VS", "vs_2_0", ShaderFlags.None);
+                        shader_byte_code = ShaderBytecode.Compile(buffer, "VShader", "vs_4_0", ShaderFlags.None, EffectFlags.None);
                         VertexShader vs = new VertexShader(device, shader_byte_code);
                         vertexShaders.Add(key, vs);
                     }
                     else
                     { // пиксельные шейдеры
-                        shader_byte_code = ShaderBytecode.Compile(buffer, "PS", "ps_2_0", ShaderFlags.None);
+                        shader_byte_code = ShaderBytecode.Compile(buffer, "PShader", "ps_4_0", ShaderFlags.None, EffectFlags.None);
                         PixelShader ps = new PixelShader(device, shader_byte_code);
                         pixelShaders.Add(key, ps);
                     }
                 }
             }
         }
-
+        
         private void CloseGraphics()
         {
             foreach (var item in ObjectTable.Objects)
@@ -391,7 +431,7 @@ namespace Graphic
             get { return camera_distance; }
             set { camera_distance = value; }
         }
-
+        
         //зумирование оболочки
         public ReturnCode ZoomModel(int zoom)
         {
@@ -437,37 +477,45 @@ namespace Graphic
             {
                 try
                 {
-                    device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, backGroundColor, 1.0f, 10);
+                    var resource = Resource.FromSwapChain<Texture2D>(swapChain, 0);
+                    RenderTargetView renderTarget = new RenderTargetView(device, resource);
+                    context.ClearRenderTargetView(renderTarget, backGroundColor);
+                    //device.Clear(ClearFlags.Target | ClearFlags.ZBuffer, backGroundColor, 1.0f, 10);
 
                     Matrix world_matrix = Matrix.RotationQuaternion(orientation);
                     Matrix view_matrix = Matrix.LookAtLH(new Vector3(0, 0, -camera_distance), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
-                    Matrix perspective_matrix = Matrix.PerspectiveFovLH(
-                        (float)(Math.PI / 10),
-                        device.Viewport.Width / (float)device.Viewport.Height,
-                        1, 
-                        1000);
-
+                    //Matrix perspective_matrix = Matrix.PerspectiveFovLH(
+                    //    (float)(Math.PI / 10),
+                        
+                    //    //device.Viewport.Width / (float)device.Viewport.Height,
+                    //    1, 
+                    //    1000);
+                    var viewport = new Viewport(0.0f, 0.0f, ownerControl.ClientSize.Width, ownerControl.ClientSize.Height);
+                    context.OutputMerger.SetTargets(renderTarget);
+                    context.Rasterizer.SetViewports(viewport);
                     //device.SetRenderState(RenderState.FillMode, FillMode.Wireframe);
 
-                    device.VertexFormat = PositionedColoredNormalVertex.Format;
+                    context.VertexShader.Set(vertexShaders["VertexShader3"]);
+                    //device.VertexFormat = PositionedColoredNormalVertex.Format;
 
-                    device.VertexShader = vertexShaders["VertexShader3"];
-                    try
-                    {
-                        device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("WorldMatrix"), world_matrix);
-                        device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("ViewMatrix"), view_matrix);
-                        device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("ProjMatrix"), perspective_matrix);
-                    }
-                    catch { }
-                    device.PixelShader = pixelShaders["PixelShader2"];
-                    
-                    
+                    //device.VertexShader = vertexShaders["VertexShader3"];
+                    //try
+                    //{
+                    //    device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("WorldMatrix"), world_matrix);
+                    //    device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("ViewMatrix"), view_matrix);
+                    //    device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("ProjMatrix"), perspective_matrix);
+                    //}
+                    //catch { }
+                    //device.PixelShader = pixelShaders["PixelShader2"];
+                    context.PixelShader.Set(pixelShaders["PixelShader2"]);
+
+
                     foreach (ShellBaseModel objectToDraw in objectsToDraw)
                     {
                         objectToDraw.Draw(device, view_matrix);
                     }
-
-                    device.Present();
+                    swapChain.Present(0, PresentFlags.None);
+                    //device.Present();
                     return ReturnCode.Success;
                 }
                 catch (Exception)

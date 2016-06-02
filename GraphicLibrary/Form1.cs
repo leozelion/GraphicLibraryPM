@@ -478,7 +478,7 @@ namespace Graphic
             splitContainer1.Panel2.Focus();
         }
 
-        //отработка события отжатия кнопки мыши
+        //обработка события перемещения курсора с нажатой кнопкой мышки
         private void splitContainer1_Panel2_MouseMove(object sender, MouseEventArgs e)
         {
             if ((e.Button == MouseButtons.Right) || (e.Button == MouseButtons.Left))
@@ -536,7 +536,7 @@ namespace Graphic
         }
         void quaternion2Euler(Quaternion q, out Vector3 ypr, RotSeq rotSeq)
         {
-            Vector3 res=new Vector3(0);
+            Vector3 res = new Vector3(0);
             switch (rotSeq)
             {
                 case RotSeq.zyx:

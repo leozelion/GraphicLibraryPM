@@ -97,3 +97,16 @@ C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrar
 C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Debug\GraphicLibrary.csproj.GenerateResource.Cache
 C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Debug\GraphicLibrary.exe.manifest
 C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibrary\GraphicLibrary\obj\Debug\GraphicLibrary.application
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\bin\Debug\GraphicLibrary.exe.config
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\obj\Debug\GraphicLibrary.exe
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\obj\Debug\GraphicLibrary.pdb
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\bin\Debug\GraphicLibrary.exe.manifest
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\bin\Debug\GraphicLibrary.application
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\bin\Debug\GraphicLibrary.exe
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\bin\Debug\GraphicLibrary.pdb
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\obj\Debug\GraphicLibrary.csprojResolveAssemblyReference.cache
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\obj\Debug\Graphic.Form1.resources
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\obj\Debug\GraphicLibrary.Properties.Resources.resources
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\obj\Debug\GraphicLibrary.csproj.GenerateResource.Cache
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\obj\Debug\GraphicLibrary.exe.manifest
+C:\Users\12642\OneDrive\ДИПЛОМ\GRAPHICLIBRARY\GraphicLibrary\GraphicLibraryPM\GraphicLibrary\obj\Debug\GraphicLibrary.application
