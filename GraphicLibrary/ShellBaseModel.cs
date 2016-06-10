@@ -6,7 +6,7 @@ namespace Graphic
 {
     public abstract class ShellBaseModel
     {
-        public abstract void Draw(Device device, Matrix matrix);
+        public abstract void Draw(Device device, DeviceContext context, Matrix matrix);
         public abstract void SetAutoAnimation(bool value);
         public abstract void SetAnimationWeight(float value);
 

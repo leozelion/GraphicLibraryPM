@@ -7,25 +7,25 @@ using System.Runtime.InteropServices;
 
 namespace Graphic
 {
-    public class VertexDeclarations
+    public class h_VertexDeclarations
     {
         [StructLayout(LayoutKind.Sequential)]
-        public struct PositionNormalVertex
+        public struct h_PositionNormalVertex
         {
             public Vector3 position;
             public Vector3 normal;
 
             public static int SizeInBytes
             {
-                get { return Marshal.SizeOf(typeof(PositionNormalVertex)); }
+                get { return Marshal.SizeOf(typeof(h_PositionNormalVertex)); }
             }
 
-            public static VertexFormat Format
-            {
-                get { return VertexFormat.Position | VertexFormat.Normal; }
-            }
+            //public static SlimDX.Direct3D9.VertexFormat Format
+            //{
+            //    get { return SlimDX.Direct3D9.VertexFormat.Position | SlimDX.Direct3D9.VertexFormat.Normal; }
+            //}
 
-            public PositionNormalVertex(Vector3 Position, Vector3 Normal)
+            public h_PositionNormalVertex(Vector3 Position, Vector3 Normal)
                 : this()
             {
                 position = Position;
@@ -33,25 +33,23 @@ namespace Graphic
             }
         }
 
-        public static readonly VertexElement[] PositionNormalVertexElements = new VertexElement[]
-		{
+        public static readonly InputElement[] PositionNormalVertexElements = new InputElement[]
+        {
 			// base from stream 0
-			new VertexElement(0, 0, DeclarationType.Float3, DeclarationMethod.Default, DeclarationUsage.Position, 0),
-			new VertexElement(0, 12, DeclarationType.Float3, DeclarationMethod.Default, DeclarationUsage.Normal, 0),
+			new InputElement("POSITION", 0, SlimDX.DXGI.Format.R32G32B32_Float, 0, 0, InputClassification.PerVertexData, 0),
+            new InputElement("NORMAL", 0, SlimDX.DXGI.Format.R32G32B32_Float, 12, 0, InputClassification.PerVertexData, 0),
 
 			// defected from stream 1
-			new VertexElement(1, 0, DeclarationType.Float3, DeclarationMethod.Default, DeclarationUsage.Position, 1),
-			new VertexElement(1, 12, DeclarationType.Float3, DeclarationMethod.Default, DeclarationUsage.Normal, 1),
-
-			VertexElement.VertexDeclarationEnd
+			new InputElement("POSITION", 1, SlimDX.DXGI.Format.R32G32B32_Float, 0, 1, InputClassification.PerVertexData, 0),
+            new InputElement("NORMAL", 1, SlimDX.DXGI.Format.R32G32B32_Float, 12, 1, InputClassification.PerVertexData, 0),
 		};
     }
 
     public class HelpClassNew
     {
-        static public VertexDeclarations.PositionNormalVertex[] BuildSphere(float radius, List<float> setkaXAngle, List<float> setkaYAngle, float offset)
+        static public h_VertexDeclarations.h_PositionNormalVertex[] BuildSphere(float radius, List<float> setkaXAngle, List<float> setkaYAngle, float offset)
         {
-            VertexDeclarations.PositionNormalVertex[] result = new VertexDeclarations.PositionNormalVertex[setkaXAngle.Count * setkaYAngle.Count];
+            h_VertexDeclarations.h_PositionNormalVertex[] result = new h_VertexDeclarations.h_PositionNormalVertex[setkaXAngle.Count * setkaYAngle.Count];
 
             int countY = 0;
             foreach (float yAngle in setkaYAngle)
@@ -71,7 +69,7 @@ namespace Graphic
                     //result[count] = new VertexDeclarations.PositionNormalVertex(position, normal);
                     //count++;
                     
-                    result[(setkaYAngle.Count - 1 - countY) * setkaXAngle.Count + countX] = new VertexDeclarations.PositionNormalVertex(position, normal);
+                    result[(setkaYAngle.Count - 1 - countY) * setkaXAngle.Count + countX] = new h_VertexDeclarations.h_PositionNormalVertex(position, normal);
                     
                     countX++;
                 }
@@ -81,9 +79,9 @@ namespace Graphic
             return result;
         }
 
-        static public VertexDeclarations.PositionNormalVertex[] BuildConus(float conusAngle, float sizeX, float startX, List<float> setkaX, List<float> setkaYAngle)
+        static public h_VertexDeclarations.h_PositionNormalVertex[] BuildConus(float conusAngle, float sizeX, float startX, List<float> setkaX, List<float> setkaYAngle)
         {
-            VertexDeclarations.PositionNormalVertex[] result = new VertexDeclarations.PositionNormalVertex[setkaX.Count * setkaYAngle.Count];
+            h_VertexDeclarations.h_PositionNormalVertex[] result = new h_VertexDeclarations.h_PositionNormalVertex[setkaX.Count * setkaYAngle.Count];
 
             //float sizeX = setkaX[setkaX.Count - 1] - setkaX[0];
             //float startX = setkaX[0];
@@ -101,7 +99,7 @@ namespace Graphic
                     normal.Normalize();
                     position.X -= (startX + sizeX / 2);
 
-                    result[(setkaYAngle.Count - 1 - countY) * setkaX.Count + countX] = new VertexDeclarations.PositionNormalVertex(position, normal);
+                    result[(setkaYAngle.Count - 1 - countY) * setkaX.Count + countX] = new h_VertexDeclarations.h_PositionNormalVertex(position, normal);
 
                     countX++;
                 }
@@ -111,9 +109,9 @@ namespace Graphic
             return result;
         }
         
-        static public VertexDeclarations.PositionNormalVertex[] BuildCylinder(float sizeX, float radiusY, float sizeYAngle, List<float> setkaX, List<float> setkaYAngle)
+        static public h_VertexDeclarations.h_PositionNormalVertex[] BuildCylinder(float sizeX, float radiusY, float sizeYAngle, List<float> setkaX, List<float> setkaYAngle)
         {
-            VertexDeclarations.PositionNormalVertex[] result = new VertexDeclarations.PositionNormalVertex[setkaX.Count * setkaYAngle.Count];
+            h_VertexDeclarations.h_PositionNormalVertex[] result = new h_VertexDeclarations.h_PositionNormalVertex[setkaX.Count * setkaYAngle.Count];
 
             int countY = 0;
             foreach (float yAngle in setkaYAngle)
@@ -128,7 +126,7 @@ namespace Graphic
                     position.Y -= radiusY;
                     position.X -= (sizeX / 2);
 
-                    result[(setkaYAngle.Count - 1 - countY) * setkaX.Count + countX] = new VertexDeclarations.PositionNormalVertex(position, normal);
+                    result[(setkaYAngle.Count - 1 - countY) * setkaX.Count + countX] = new h_VertexDeclarations.h_PositionNormalVertex(position, normal);
                     
                     countX++;
                 }
@@ -138,9 +136,9 @@ namespace Graphic
             return result;
         }
 
-        static public VertexDeclarations.PositionNormalVertex[] BuildFromTorus(float radiusX, float sizeX, float radiusY, float sizeY, List<float> setkaX, List<float> setkaY)
+        static public h_VertexDeclarations.h_PositionNormalVertex[] BuildFromTorus(float radiusX, float sizeX, float radiusY, float sizeY, List<float> setkaX, List<float> setkaY)
         {
-            VertexDeclarations.PositionNormalVertex[] result = new VertexDeclarations.PositionNormalVertex[setkaX.Count * setkaY.Count];
+            h_VertexDeclarations.h_PositionNormalVertex[] result = new h_VertexDeclarations.h_PositionNormalVertex[setkaX.Count * setkaY.Count];
 
             List<float> psi_angles = new List<float>();
             List<float> phi_angles = new List<float>();
@@ -215,9 +213,9 @@ namespace Graphic
                     normal.Normalize();
 
                     if (radiusX < radiusY)
-                        result[slice * r_stacks + stack] = new VertexDeclarations.PositionNormalVertex(point, normal);
+                        result[slice * r_stacks + stack] = new h_VertexDeclarations.h_PositionNormalVertex(point, normal);
                     else
-                        result[stack * R_stacks + slice] = new VertexDeclarations.PositionNormalVertex(point, normal);
+                        result[stack * R_stacks + slice] = new h_VertexDeclarations.h_PositionNormalVertex(point, normal);
                 }
             }
 
@@ -246,34 +244,34 @@ namespace Graphic
             return result;
         }
 
-        static public VertexDeclarations.PositionNormalVertex[] ApplyProgib(VertexDeclarations.PositionNormalVertex[] surface, float[] progibs, float add)
+        static public h_VertexDeclarations.h_PositionNormalVertex[] ApplyProgib(h_VertexDeclarations.h_PositionNormalVertex[] surface, float[] progibs, float add)
         {
-            VertexDeclarations.PositionNormalVertex[] result = new VertexDeclarations.PositionNormalVertex[surface.Length];
+            h_VertexDeclarations.h_PositionNormalVertex[] result = new h_VertexDeclarations.h_PositionNormalVertex[surface.Length];
 
             for (int i = 0; i < result.Length; i++)
-                result[i] = new VertexDeclarations.PositionNormalVertex(surface[i].position + surface[i].normal * (progibs[i] + add), surface[i].normal);
+                result[i] = new h_VertexDeclarations.h_PositionNormalVertex(surface[i].position + surface[i].normal * (progibs[i] + add), surface[i].normal);
 
             return result;
         }
 
-        static public VertexDeclarations.PositionNormalVertex[] MoveAlongNormal(VertexDeclarations.PositionNormalVertex[] surface, float move, bool invert_normal)
+        static public h_VertexDeclarations.h_PositionNormalVertex[] MoveAlongNormal(h_VertexDeclarations.h_PositionNormalVertex[] surface, float move, bool invert_normal)
         {
-            VertexDeclarations.PositionNormalVertex[] result = new VertexDeclarations.PositionNormalVertex[surface.Length];
+            h_VertexDeclarations.h_PositionNormalVertex[] result = new h_VertexDeclarations.h_PositionNormalVertex[surface.Length];
 
             for (int i = 0; i < result.Length; i++)
             {
                 if (invert_normal)
-                    result[i] = new VertexDeclarations.PositionNormalVertex(surface[i].position + surface[i].normal * move, -surface[i].normal);
+                    result[i] = new h_VertexDeclarations.h_PositionNormalVertex(surface[i].position + surface[i].normal * move, -surface[i].normal);
                 else
-                    result[i] = new VertexDeclarations.PositionNormalVertex(surface[i].position + surface[i].normal * move, surface[i].normal);
+                    result[i] = new h_VertexDeclarations.h_PositionNormalVertex(surface[i].position + surface[i].normal * move, surface[i].normal);
             }
 
             return result;
         }
 
-        static public VertexDeclarations.PositionNormalVertex[] BuildEdgeX(VertexDeclarations.PositionNormalVertex[] surfaceTop, VertexDeclarations.PositionNormalVertex[] surfaceBottom, int stackX, int stacksX, int stacksY, int stacksZ)
+        static public h_VertexDeclarations.h_PositionNormalVertex[] BuildEdgeX(h_VertexDeclarations.h_PositionNormalVertex[] surfaceTop, h_VertexDeclarations.h_PositionNormalVertex[] surfaceBottom, int stackX, int stacksX, int stacksY, int stacksZ)
         {
-            VertexDeclarations.PositionNormalVertex[] result = new VertexDeclarations.PositionNormalVertex[stacksY * stacksZ];
+            h_VertexDeclarations.h_PositionNormalVertex[] result = new h_VertexDeclarations.h_PositionNormalVertex[stacksY * stacksZ];
 
             int index = 0;
             for (int stackY = 0; stackY < stacksY; stackY++)
@@ -283,7 +281,7 @@ namespace Graphic
                 direction.Normalize();
                 for (int stackZ = 0; stackZ < stacksZ; stackZ++)
                 {
-                    result[index] = new VertexDeclarations.PositionNormalVertex(surfaceBottom[stackY * stacksX + stackX].position + direction * H * stackZ / (stacksZ - 1), Vector3.Zero);
+                    result[index] = new h_VertexDeclarations.h_PositionNormalVertex(surfaceBottom[stackY * stacksX + stackX].position + direction * H * stackZ / (stacksZ - 1), Vector3.Zero);
                     index++;
                 }
             }
@@ -291,9 +289,9 @@ namespace Graphic
             return result;
         }
 
-        static public VertexDeclarations.PositionNormalVertex[] BuildEdgeY(VertexDeclarations.PositionNormalVertex[] surfaceTop, VertexDeclarations.PositionNormalVertex[] surfaceBottom, int stackY, int stacksX, int stacksY, int stacksZ)
+        static public h_VertexDeclarations.h_PositionNormalVertex[] BuildEdgeY(h_VertexDeclarations.h_PositionNormalVertex[] surfaceTop, h_VertexDeclarations.h_PositionNormalVertex[] surfaceBottom, int stackY, int stacksX, int stacksY, int stacksZ)
         {
-            VertexDeclarations.PositionNormalVertex[] result = new VertexDeclarations.PositionNormalVertex[stacksX * stacksZ];
+            h_VertexDeclarations.h_PositionNormalVertex[] result = new h_VertexDeclarations.h_PositionNormalVertex[stacksX * stacksZ];
 
             int index = 0;
             for (int stackX = 0; stackX < stacksX; stackX++)
@@ -303,7 +301,7 @@ namespace Graphic
                 direction.Normalize();
                 for (int stackZ = 0; stackZ < stacksZ; stackZ++)
                 {
-                    result[index] = new VertexDeclarations.PositionNormalVertex(surfaceBottom[stackY * stacksX + stackX].position + direction * H * stackZ / (stacksZ - 1), Vector3.Zero);
+                    result[index] = new h_VertexDeclarations.h_PositionNormalVertex(surfaceBottom[stackY * stacksX + stackX].position + direction * H * stackZ / (stacksZ - 1), Vector3.Zero);
                     index++;
                 }
             }
@@ -311,7 +309,7 @@ namespace Graphic
             return result;
         }
 
-        static public void CalculateNormals(VertexDeclarations.PositionNormalVertex[] surface, int pitch, int height, bool invert_normal)
+        static public void CalculateNormals(h_VertexDeclarations.h_PositionNormalVertex[] surface, int pitch, int height, bool invert_normal)
         {
             //расчёт нормалей: верх
             for (int slice = 1; slice < height - 1; slice++)

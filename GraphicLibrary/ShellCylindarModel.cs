@@ -23,23 +23,23 @@ namespace Graphic
         List<float> setkaX = new List<float>(); //сетка по X
         List<float> setkaY = new List<float>(); //сетка по Y
 
-        VertexDeclarations.PositionNormalVertex[] vertexesMiddle;
-        VertexDeclarations.PositionNormalVertex[] vertexesTop;
-        VertexDeclarations.PositionNormalVertex[] vertexesBottom;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesMiddle;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesTop;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesBottom;
         short[] indicesTopMiddleBottom;
-        VertexDeclarations.PositionNormalVertex[] vertexesEdgeFront;
-        VertexDeclarations.PositionNormalVertex[] vertexesEdgeBack;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeFront;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeBack;
         short[] indicesEdgeFrontBack;
-        VertexDeclarations.PositionNormalVertex[] vertexesEdgeLeft;
-        VertexDeclarations.PositionNormalVertex[] vertexesEdgeRight;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeLeft;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeRight;
         short[] indicesEdgeLeftRight;
 
-        VertexDeclarations.PositionNormalVertex[] vertexesTopDefected;
-        VertexDeclarations.PositionNormalVertex[] vertexesBottomDefected;
-        VertexDeclarations.PositionNormalVertex[] vertexesEdgeFrontDefected;
-        VertexDeclarations.PositionNormalVertex[] vertexesEdgeBackDefected;
-        VertexDeclarations.PositionNormalVertex[] vertexesEdgeLeftDefected;
-        VertexDeclarations.PositionNormalVertex[] vertexesEdgeRightDefected;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesTopDefected;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesBottomDefected;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeFrontDefected;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeBackDefected;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeLeftDefected;
+        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeRightDefected;
 
         Device device;
         VertexBuffer vbTop;
@@ -156,46 +156,46 @@ namespace Graphic
                 }
             }
 
-            device.VertexDeclaration = new VertexDeclaration(device, VertexDeclarations.PositionNormalVertexElements);
+            device.VertexDeclaration = new VertexDeclaration(device, h_VertexDeclarations.PositionNormalVertexElements);
             device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("coef"), animationWeight);
             //верхняя поверхность
             device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 0.9f, 0.9f, 0.9f, 1.0f });
-            device.SetStreamSource(0, vbTop, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbTopDefected, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(0, vbTop, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(1, vbTopDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
             device.Indices = ibTopMiddleBottom;
             device.BeginScene();
             device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesTop.Length, 0, indicesTopMiddleBottom.Length / 3);
             device.EndScene();
             //нижняя поверхность
             device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 0.7f, 0.7f, 0.7f, 1.0f });
-            device.SetStreamSource(0, vbBottom, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbBottomDefected, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(0, vbBottom, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(1, vbBottomDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
             device.Indices = ibTopMiddleBottom;
             device.BeginScene();
             device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesBottom.Length, 0, indicesTopMiddleBottom.Length / 3);
             device.EndScene();
             //боковые грани
             device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 0.3f, 0.3f, 0.3f, 1 });
-            device.SetStreamSource(0, vbEdgeFront, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbEdgeFrontDefected, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(0, vbEdgeFront, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(1, vbEdgeFrontDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
             device.Indices = ibEdgeFrontBack;
             device.BeginScene();
             device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesEdgeFront.Length, 0, indicesEdgeFrontBack.Length / 3);
             device.EndScene();
-            device.SetStreamSource(0, vbEdgeBack, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbEdgeBackDefected, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(0, vbEdgeBack, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(1, vbEdgeBackDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
             device.Indices = ibEdgeFrontBack;
             device.BeginScene();
             device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesEdgeBack.Length, 0, indicesEdgeFrontBack.Length / 3);
             device.EndScene();
-            device.SetStreamSource(0, vbEdgeLeft, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbEdgeLeftDefected, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(0, vbEdgeLeft, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(1, vbEdgeLeftDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
             device.Indices = ibEdgeLeftRight;
             device.BeginScene();
             device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesEdgeLeft.Length, 0, indicesEdgeLeftRight.Length / 3);
             device.EndScene();
-            device.SetStreamSource(0, vbEdgeRight, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbEdgeRightDefected, 0, VertexDeclarations.PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(0, vbEdgeRight, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
+            device.SetStreamSource(1, vbEdgeRightDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
             device.Indices = ibEdgeLeftRight;
             device.BeginScene();
             device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesEdgeRight.Length, 0, indicesEdgeLeftRight.Length / 3);
@@ -306,10 +306,10 @@ namespace Graphic
             ibEdgeLeftRight.Unlock();
         }
 
-        private VertexBuffer CreateVertexBuffer(VertexDeclarations.PositionNormalVertex[] surface)
+        private VertexBuffer CreateVertexBuffer(h_VertexDeclarations.h_PositionNormalVertex[] surface)
         {
-            VertexBuffer result = new VertexBuffer(device, VertexDeclarations.PositionNormalVertex.SizeInBytes * surface.Length, Usage.None, VertexFormat.None, Pool.Default);
-            DataStream dr = result.Lock(0, VertexDeclarations.PositionNormalVertex.SizeInBytes * surface.Length, LockFlags.None);
+            VertexBuffer result = new VertexBuffer(device, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes * surface.Length, Usage.None, VertexFormat.None, Pool.Default);
+            DataStream dr = result.Lock(0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes * surface.Length, LockFlags.None);
             dr.WriteRange(surface);
             result.Unlock();
             return result;
