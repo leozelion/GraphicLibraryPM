@@ -140,7 +140,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <EmbeddedResource Include="shaders\VertexShader2.fx" />
-    <EmbeddedResource Include="shaders\PixelShader2.fx" />
     <EmbeddedResource Include="shaders\PixelShader1.fx" />
     <EmbeddedResource Include="shaders\VertexShader1.fx" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -149,7 +148,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Temp.cs" />
-    <EmbeddedResource Include="shaders\VertexShader3.fx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -167,6 +165,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PixelShader2.fx" />
+    <Content Include="VertexShader3.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GraphicLibrary.exe" size="116120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GraphicLibrary.exe" size="106904">
       <assemblyIdentity name="GraphicLibrary" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>l1NPxw8cWSmnF7BHfPEuaT/WV9bZ7e9qDC/H677w+zI=</dsig:DigestValue>
+        <dsig:DigestValue>eTGpyJt7lWIoMH2feSA1/H5M42GxbxRXheB1Ea+cslo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

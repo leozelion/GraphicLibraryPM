@@ -3,6 +3,7 @@ using SlimDX.Direct3D11;
 using SlimDX.DXGI;
 using Device = SlimDX.Direct3D11.Device;
 using Resource = SlimDX.Direct3D11.Resource;
+using Buffer = SlimDX.Direct3D11.Buffer;
 using System.Drawing;
 using System;
 using System.Collections.Generic;
@@ -28,84 +29,6 @@ namespace Graphic
         List<float> setkaX = new List<float>(); //сетка по X
         List<float> setkaY = new List<float>(); //сетка по Y
 
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesMiddle;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesTop;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesBottom;
-        short[] indicesTopMiddleBottom;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeFront;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeBack;
-        short[] indicesEdgeFrontBack;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeLeft;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeRight;
-        short[] indicesEdgeLeftRight;
-
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesTopDefected;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesBottomDefected;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeFrontDefected;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeBackDefected;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeLeftDefected;
-        h_VertexDeclarations.h_PositionNormalVertex[] vertexesEdgeRightDefected;
-
-        Device device;
-        //BufferDescription vbDescTop; //vbTopd = new BufferDescription(sizeof(vbTop), ResourceUsage.Default, BindFlags.VertexBuffer, CpuAccessFlags.Read, ResourceOptionFlags.None, ResourceOptionFlags.None);
-        SlimDX.Direct3D11.Buffer vbTop;
-        SlimDX.Direct3D11.Buffer vbTopDefected;
-        SlimDX.Direct3D11.Buffer vbBottom;
-        SlimDX.Direct3D11.Buffer vbBottomDefected;
-        SlimDX.Direct3D11.Buffer vbEdgeFront;
-        SlimDX.Direct3D11.Buffer vbEdgeFrontDefected;
-        SlimDX.Direct3D11.Buffer vbEdgeBack;
-        SlimDX.Direct3D11.Buffer vbEdgeBackDefected;
-        SlimDX.Direct3D11.Buffer vbEdgeLeft;
-        SlimDX.Direct3D11.Buffer vbEdgeLeftDefected;
-        SlimDX.Direct3D11.Buffer vbEdgeRight;
-        SlimDX.Direct3D11.Buffer vbEdgeRightDefected;
-        SlimDX.Direct3D11.Buffer ibTopMiddleBottom;
-        SlimDX.Direct3D11.Buffer ibEdgeFrontBack;
-        SlimDX.Direct3D11.Buffer ibEdgeLeftRight;
-
-        //коэф-т анимации
-        float direction = 1;
-        float animationWeight = 0;
-        public float AnimationWeight
-        {
-            get
-            {
-                return animationWeight;
-            }
-            set
-            {
-                animationWeight = value;
-            }
-        }
-        bool autoAnimation = false;
-        public bool AutoAnimation
-        {
-            get
-            {
-                return autoAnimation;
-            }
-            set
-            {
-                autoAnimation = value;
-                if (value == true)
-                {
-                    animationWeight = 0;
-                }
-            }
-        }
-
-        public override void SetAnimationWeight(float value)
-        {
-            AnimationWeight = value;
-        }
-        public override void SetAutoAnimation(bool value)
-        {
-            AutoAnimation = value;
-        }
-
-        int ticks;
-
         //конструктор
         public ShellRectangularModelNew(Device Device, float RadiusX, float RadiusY, float SizeX, float SizeY, float SizeZ, List<Vector3> Progibs, float Offset, double scaleCoeff1, string prgfun1)
         {
@@ -128,108 +51,7 @@ namespace Graphic
             BuildModel();
         }
 
-        //отрисовка
-        public override void Draw(Device device, DeviceContext context, Matrix matrix)
-        {
-            if (autoAnimation)
-            {
-                //if(base.animateProgFunMass!= null)
-                //{
-                //    BuildModel();
-                //}
-                animationWeight += (2 * direction - 1) * 0.005f;
-                if (animationWeight >= 1)
-                {
-                    animationWeight = 1;
-                    /*if (ticks == 50)
-                    {
-                        direction = 0;
-                        ticks = 0;
-                    }
-                    else
-                    {
-                        ticks++;
-                        direction = 0.5f;
-                    }*/
-                }
-                if (animationWeight <= 0)
-                {
-                    animationWeight = 0;
-                    if (ticks == 50)
-                    {
-                        direction = 1;
-                        ticks = 0;
-                    }
-                    else
-                    {
-                        ticks++;
-                        direction = 0.5f;
-                    }
-                }
-            }
-//            context.UpdateSubresource()
-            device.VertexDeclaration = new VertexDeclaration(device, h_VertexDeclarations.PositionNormalVertexElements);
-            device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("coef"), animationWeight);
-            //верхняя поверхность
-            device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 1.0f, 1.0f, 1.0f, 1.0f });
-            device.SetStreamSource(0, vbTop, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbTopDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.Indices = ibTopMiddleBottom;
-            device.BeginScene();
-            device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesTop.Length, 0, indicesTopMiddleBottom.Length / 3);
-            device.EndScene();
-            //нижняя поверхность
-            device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 0.7f, 0.7f, 0.7f, 1.0f });
-            device.SetStreamSource(0, vbBottom, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbBottomDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.Indices = ibTopMiddleBottom;
-            device.BeginScene();
-            device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesBottom.Length, 0, indicesTopMiddleBottom.Length / 3);
-            device.EndScene();
-            //боковые грани
-            device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 0.3f, 0.3f, 0.3f, 1 });
-            device.SetStreamSource(0, vbEdgeFront, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbEdgeFrontDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.Indices = ibEdgeFrontBack;
-            device.BeginScene();
-            device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesEdgeFront.Length, 0, indicesEdgeFrontBack.Length / 3);
-            device.EndScene();
-            device.SetStreamSource(0, vbEdgeBack, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbEdgeBackDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.Indices = ibEdgeFrontBack;
-            device.BeginScene();
-            device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesEdgeBack.Length, 0, indicesEdgeFrontBack.Length / 3);
-            device.EndScene();
-            device.SetStreamSource(0, vbEdgeLeft, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbEdgeLeftDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.Indices = ibEdgeLeftRight;
-            device.BeginScene();
-            device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesEdgeLeft.Length, 0, indicesEdgeLeftRight.Length / 3);
-            device.EndScene();
-            device.SetStreamSource(0, vbEdgeRight, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.SetStreamSource(1, vbEdgeRightDefected, 0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes);
-            device.Indices = ibEdgeLeftRight;
-            device.BeginScene();
-            device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexesEdgeRight.Length, 0, indicesEdgeLeftRight.Length / 3);
-            device.EndScene();
-
-            #region OldDrawing
-            /*device.VertexFormat = VertexDeclarations.PositionNormalVertex.Format;
-            device.BeginScene();
-            device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 0.9f, 0.9f, 0.9f, 1.0f });
-            device.DrawIndexedUserPrimitives(PrimitiveType.TriangleList, 0, vertexesTop.Length, indicesTopMiddleBottom.Length / 3, indicesTopMiddleBottom, Format.Index16, vertexesTop, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            //device.DrawIndexedUserPrimitives(PrimitiveType.TriangleList, 0, vertexesTopDefected.Length, indicesTopMiddleBottom.Length / 3, indicesTopMiddleBottom, Format.Index16, vertexesTopDefected, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 0.7f, 0.7f, 0.7f, 1.0f });
-            device.DrawIndexedUserPrimitives(PrimitiveType.TriangleList, 0, vertexesBottom.Length, indicesTopMiddleBottom.Length / 3, indicesTopMiddleBottom, Format.Index16, vertexesBottom, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.VertexShader.Function.ConstantTable.SetValue(device, new EffectHandle("Color"), new float[4] { 0.3f, 0.3f, 0.3f, 1 });
-            device.DrawIndexedUserPrimitives(PrimitiveType.TriangleList, 0, vertexesEdgeFront.Length, indicesEdgeFrontBack.Length / 3, indicesEdgeFrontBack, Format.Index16, vertexesEdgeFront, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.DrawIndexedUserPrimitives(PrimitiveType.TriangleList, 0, vertexesEdgeBack.Length, indicesEdgeFrontBack.Length / 3, indicesEdgeFrontBack, Format.Index16, vertexesEdgeBack, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.DrawIndexedUserPrimitives(PrimitiveType.TriangleList, 0, vertexesEdgeLeft.Length, indicesEdgeLeftRight.Length / 3, indicesEdgeLeftRight, Format.Index16, vertexesEdgeLeft, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.DrawIndexedUserPrimitives(PrimitiveType.TriangleList, 0, vertexesEdgeRight.Length, indicesEdgeLeftRight.Length / 3, indicesEdgeLeftRight, Format.Index16, vertexesEdgeRight, VertexDeclarations.PositionNormalVertex.SizeInBytes);
-            device.EndScene();*/
-            #endregion
-        }
-
+       
         //создание равномерной сетки
         private List<Vector3> BuildSetka()
         {
@@ -305,42 +127,22 @@ namespace Graphic
             HelpClassNew.CalculateNormals(vertexesEdgeRightDefected, stacksZ, setkaY.Count, true);
 
             //выделение памяти под поверхности
-            vbTop = CreateVertexBuffer(vertexesTop);
-            vbTopDefected = CreateVertexBuffer(vertexesTopDefected);
-            vbBottom = CreateVertexBuffer(vertexesBottom);
-            vbBottomDefected = CreateVertexBuffer(vertexesBottomDefected);
-            vbEdgeFront = CreateVertexBuffer(vertexesEdgeFront);
-            vbEdgeFrontDefected = CreateVertexBuffer(vertexesEdgeFrontDefected);
-            vbEdgeBack = CreateVertexBuffer(vertexesEdgeBack);
-            vbEdgeBackDefected = CreateVertexBuffer(vertexesEdgeBackDefected);
-            vbEdgeLeft = CreateVertexBuffer(vertexesEdgeLeft);
-            vbEdgeLeftDefected = CreateVertexBuffer(vertexesEdgeLeftDefected);
-            vbEdgeRight = CreateVertexBuffer(vertexesEdgeRight);
-            vbEdgeRightDefected = CreateVertexBuffer(vertexesEdgeRightDefected);
+            vbTop = createVertexBuffer(vertexesTop);
+            vbTopDefected = createVertexBuffer(vertexesTopDefected);
+            vbBottom = createVertexBuffer(vertexesBottom);
+            vbBottomDefected = createVertexBuffer(vertexesBottomDefected);
+            vbEdgeFront = createVertexBuffer(vertexesEdgeFront);
+            vbEdgeFrontDefected = createVertexBuffer(vertexesEdgeFrontDefected);
+            vbEdgeBack = createVertexBuffer(vertexesEdgeBack);
+            vbEdgeBackDefected = createVertexBuffer(vertexesEdgeBackDefected);
+            vbEdgeLeft = createVertexBuffer(vertexesEdgeLeft);
+            vbEdgeLeftDefected = createVertexBuffer(vertexesEdgeLeftDefected);
+            vbEdgeRight = createVertexBuffer(vertexesEdgeRight);
+            vbEdgeRightDefected = createVertexBuffer(vertexesEdgeRightDefected);
 
-            ibTopMiddleBottom = new SlimDX.Direct3D11.Buffer(device, sizeof(ushort) * indicesTopMiddleBottom.Length, Usage.None, Pool.Default, true);
-            DataStream dr = ibTopMiddleBottom.Lock(0, sizeof(ushort) * indicesTopMiddleBottom.Length, LockFlags.None);
-            dr.WriteRange(indicesTopMiddleBottom);
-            ibTopMiddleBottom.Unlock();
-
-            ibEdgeFrontBack = new SlimDX.Direct3D11.Buffer(device, sizeof(ushort) * indicesEdgeFrontBack.Length, Usage.None, Pool.Default, true);
-            dr = ibEdgeFrontBack.Lock(0, sizeof(ushort) * indicesEdgeFrontBack.Length, LockFlags.None);
-            dr.WriteRange(indicesEdgeFrontBack);
-            ibEdgeFrontBack.Unlock();
-
-            ibEdgeLeftRight = new SlimDX.Direct3D11.Buffer(device, sizeof(ushort) * indicesEdgeLeftRight.Length, Usage.None, Pool.Default, true);
-            dr = ibEdgeLeftRight.Lock(0, sizeof(ushort) * indicesEdgeLeftRight.Length, LockFlags.None);
-            dr.WriteRange(indicesEdgeLeftRight);
-            ibEdgeLeftRight.Unlock();
-        }
-
-        private VertexBuffer CreateVertexBuffer(h_VertexDeclarations.h_PositionNormalVertex[] surface)
-        {
-            VertexBuffer result = new VertexBuffer(device, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes * surface.Length, Usage.None, VertexFormat.None, Pool.Default);
-            DataStream dr = result.Lock(0, h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes * surface.Length, LockFlags.None);
-            dr.WriteRange(surface);
-            result.Unlock();
-            return result;
+            ibTopMiddleBottom = createIndexBuffer(indicesTopMiddleBottom);
+            ibEdgeFrontBack = createIndexBuffer(indicesEdgeFrontBack);
+            ibEdgeLeftRight = createIndexBuffer(indicesEdgeLeftRight);
         }
     }
 
@@ -353,52 +155,6 @@ namespace Graphic
         float sizeY; //размер по оси Y (длина, ширина)
         float sizeZ; //размер по оси Z (высота)
         List<Vector3> progibs; //информация о прогибах
-        Device device;
-
-        float animationWeight = 0;
-        public float AnimationWeight
-        {
-            get
-            {
-                return animationWeight;
-            }
-            set
-            {
-                animationWeight = value;
-                main.AnimationWeight = value;
-                foreach (ShellRectangularModelNew item in rebroX)
-                    item.AnimationWeight = value;
-                foreach (ShellRectangularModelNew item in rebroY)
-                    item.AnimationWeight = value;
-
-            }
-        }
-        bool autoAnimation = false;
-        public bool AutoAnimation
-        {
-            get
-            {
-                return autoAnimation;
-            }
-            set
-            {
-                autoAnimation = value;
-                main.AutoAnimation = value;
-                foreach (ShellRectangularModelNew item in rebroX)
-                    item.AutoAnimation = value;
-                foreach (ShellRectangularModelNew item in rebroY)
-                    item.AutoAnimation = value;
-            }
-        }
-
-        public override void SetAnimationWeight(float value)
-        {
-            AnimationWeight = value;
-        }
-        public override void SetAutoAnimation(bool value)
-        {
-            AutoAnimation = value;
-        }
 
         int nhx; //количество ребер по оси X
         float hwx; //размер ребра X по оси Z (высота)
@@ -564,7 +320,7 @@ namespace Graphic
             return true;
         }
 
-        public override void Draw(Device device, Matrix matrix)
+        public new void Draw(Device device, Matrix matrix)
         {
             if (rebroX.Count > 0)
                 foreach (ShellRectangularModelNew item in rebroX)

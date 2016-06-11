@@ -278,7 +278,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellRectangularModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.device, radius_x, radius_y, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text),_ProgFun))
+                    if (!((ShellRectangularModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_x, radius_y, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text),_ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании прямоугольной оболочки");
                         return false;
@@ -309,7 +309,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellCylindarModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.device, radius_y, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
+                    if (!((ShellCylindarModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_y, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании цилиндрической оболочки");
                         return false;
@@ -344,7 +344,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellConusModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.device, conus_angle, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
+                    if (!((ShellConusModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, conus_angle, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании конической оболочки");
                         return false;
@@ -379,7 +379,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellSphereModellWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.device, radius_x, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
+                    if (!((ShellSphereModellWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_x, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании сферической оболочки");
                         return false;
@@ -419,7 +419,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellTorusModellWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.device, d, radius_x, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
+                    if (!((ShellTorusModellWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, d, radius_x, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании торообразной оболочки");
                         return false;
@@ -692,87 +692,95 @@ namespace Graphic
         //private Image createImage(Control c)
         //{
         //    Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(CaptureScreen(), SlimDX.Direct3D9.ImageFileFormat.Png));
-            
+
         //    //Graphics graphicsPanel = c.CreateGraphics();
         //    //Bitmap bitmap = CreateBitmapFromGraphics(graphicsPanel, 0, 50, c.Width, c.Height-50);
-            
+
         //    //graphicsPanel.CopyFromScreen()
         //    //Bitmap res = new Bitmap(c.Width, c.Height);
         //    //c.DrawToBitmap(res, new Rectangle(Point.Empty, c.Size));
         //    return bitmap;
         //}
 
+        //----------------------------------------------------------
+        // ПОКА НЕ РАБОТАЕТ
+        //----------------------------------------------------------
         private void jPEGFormatToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Jpg));
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Jpeg Image|*.jpg";
-            dialog.Title = "Сохранить рисунок";
-            dialog.ShowDialog();
-            if (dialog.FileName != string.Empty)
-                bitmap.Save(dialog.FileName,ImageFormat.Jpeg);
+            //Bitmap bitmap = new Bitmap(
+            //    //new DataStream(moduleGraphicLibrary.m_d3dDevice.ImmediateContext.StreamOutput, true, false);
+            //    //moduleGraphicLibrary.m_d3dDevice.ImmediateContext.StreamOutput
+
+            //    //.FromSwapChain(null, 0));//(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Jpg)
+            //    );
+            //SaveFileDialog dialog = new SaveFileDialog();
+            //dialog.Filter = "Jpeg Image|*.jpg";
+            //dialog.Title = "Сохранить рисунок";
+            //dialog.ShowDialog();
+            //if (dialog.FileName != string.Empty)
+            //    bitmap.Save(dialog.FileName,ImageFormat.Jpeg);
         }
 
         private void pNGToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Png));
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Png Image|*.png";
-            dialog.Title = "Сохранить рисунок";
-            dialog.ShowDialog();
-            if (dialog.FileName != string.Empty)
-                bitmap.Save(dialog.FileName, ImageFormat.Png);
+            //Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Png));
+            //SaveFileDialog dialog = new SaveFileDialog();
+            //dialog.Filter = "Png Image|*.png";
+            //dialog.Title = "Сохранить рисунок";
+            //dialog.ShowDialog();
+            //if (dialog.FileName != string.Empty)
+            //    bitmap.Save(dialog.FileName, ImageFormat.Png);
         }
 
         private void bitmapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Bmp));
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Bitmap Image|*.bmp";
-            dialog.Title = "Сохранить рисунок";
-            dialog.ShowDialog();
-            if (dialog.FileName != string.Empty)
-                bitmap.Save(dialog.FileName, ImageFormat.Bmp);
+            //Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Bmp));
+            //SaveFileDialog dialog = new SaveFileDialog();
+            //dialog.Filter = "Bitmap Image|*.bmp";
+            //dialog.Title = "Сохранить рисунок";
+            //dialog.ShowDialog();
+            //if (dialog.FileName != string.Empty)
+            //    bitmap.Save(dialog.FileName, ImageFormat.Bmp);
         }
 
         private void gIFToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (animateProgFunMass == null)
-            //    return;
-            Bitmap bitmap;
-            GifBitmapEncoder gEnc = new GifBitmapEncoder();
-            List<Bitmap> images = new List<Bitmap>();
-            for (float i = 0; i <1.2f; i+=0.02f)
-            {
-                shell.SetAnimationWeight(i);
-                moduleGraphicLibrary.Draw();
-                bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Png));
-                images.Add(bitmap);
-            }
+            ////if (animateProgFunMass == null)
+            ////    return;
+            //Bitmap bitmap;
+            //GifBitmapEncoder gEnc = new GifBitmapEncoder();
+            //List<Bitmap> images = new List<Bitmap>();
+            //for (float i = 0; i <1.2f; i+=0.02f)
+            //{
+            //    shell.SetAnimationWeight(i);
+            //    moduleGraphicLibrary.Draw();
+            //    bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Png));
+            //    images.Add(bitmap);
+            //}
 
-            foreach (Bitmap bmpImage in images)
-            {
-                var src = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                    bmpImage.GetHbitmap(),
-                    IntPtr.Zero,
-                    System.Windows.Int32Rect.Empty,
-                    BitmapSizeOptions.FromEmptyOptions());
-                gEnc.Frames.Add(BitmapFrame.Create(src));
-            }
+            //foreach (Bitmap bmpImage in images)
+            //{
+            //    var src = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+            //        bmpImage.GetHbitmap(),
+            //        IntPtr.Zero,
+            //        System.Windows.Int32Rect.Empty,
+            //        BitmapSizeOptions.FromEmptyOptions());
+            //    gEnc.Frames.Add(BitmapFrame.Create(src));
+            //}
 
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Gif Image|*.gif";
-            dialog.Title = "Сохранить рисунок";
-            dialog.ShowDialog();
-            if (dialog.FileName != string.Empty)
-            {
-                //bitmap.Save(dialog.FileName, ImageFormat.Gif);
-                using (FileStream fs = new FileStream(dialog.FileName, FileMode.Create))
-                {
-                    gEnc.Metadata = new BitmapMetadata("gif");
-                    gEnc.Save(fs);
-                }
-            }
+            //SaveFileDialog dialog = new SaveFileDialog();
+            //dialog.Filter = "Gif Image|*.gif";
+            //dialog.Title = "Сохранить рисунок";
+            //dialog.ShowDialog();
+            //if (dialog.FileName != string.Empty)
+            //{
+            //    //bitmap.Save(dialog.FileName, ImageFormat.Gif);
+            //    using (FileStream fs = new FileStream(dialog.FileName, FileMode.Create))
+            //    {
+            //        gEnc.Metadata = new BitmapMetadata("gif");
+            //        gEnc.Save(fs);
+            //    }
+            //}
         }
 
         private Dictionary<int, string> animateProgFunMass;
