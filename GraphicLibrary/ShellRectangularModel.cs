@@ -309,9 +309,10 @@ namespace Graphic
                     }
                 }
                 #endregion
-                #region создание основной оболочки
+
+                // создание основной оболочки
                 main = new ShellRectangularModelNew(device, radiusX, radiusY, sizeX, sizeY, sizeZ, progibs, 0, scaleCoeff1, prgfun1);
-                #endregion
+
             }
             catch
             {

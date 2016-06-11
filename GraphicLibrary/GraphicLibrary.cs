@@ -11,8 +11,7 @@ using Device = SlimDX.Direct3D11.Device;
 using Resource = SlimDX.Direct3D11.Resource;
 using Buffer = SlimDX.Direct3D11.Buffer;
 //
-using System.Reflection;
-using System.IO;
+
 
 namespace Graphic
 {
@@ -279,8 +278,8 @@ namespace Graphic
         //-----------------------------------------------------------------------------
         public void CreateDevice()
         {
-            m_d3dDevice = new Device(DriverType.Hardware, DeviceCreationFlags.BgraSupport);
-            m_d3dContext = new DeviceContext(m_d3dDevice);
+            m_d3dDevice = new Device(DriverType.Hardware, DeviceCreationFlags.None);
+            m_d3dContext = m_d3dDevice.ImmediateContext;
         }
 
         //-----------------------------------------------------------------------------
@@ -291,55 +290,70 @@ namespace Graphic
             if (m_swapChain != null)
             {
                 // If the swap chain already exists, resize it.
-                m_swapChain.ResizeBuffers(
-                    2, // Double-buffered swap chain.
-                    0,
-                    0, Format.B8G8R8A8_UNorm,
-                    SwapChainFlags.None
-                    );
+                
+               m_swapChain.ResizeBuffers(2, 0, 0, Format.B8G8R8A8_UNorm, SwapChainFlags.None);
+                    //2, // Double-buffered swap chain.
+                    //0,
+                    //0, 
+                    //Format.B8G8R8A8_UNorm,
+                    //0
+                    //);
             }
             else
             {
                 // Otherwise, create a new one using the same adapter 
                 // as the existing Direct3D device.
-                SwapChainDescription swapChainDesc = new SwapChainDescription() { };
+                SwapChainDescription swapChainDesc = new SwapChainDescription() {
+                    BufferCount = 2,
+                    Usage = Usage.RenderTargetOutput,
+                    IsWindowed = true,
+                    ModeDescription = new ModeDescription(0, 0, new Rational(60, 1), Format.B8G8R8A8_UNorm),
+                    SampleDescription = new SampleDescription(1, 0),
+                    Flags = SwapChainFlags.None,
+                    SwapEffect = SwapEffect.Sequential
+                };
+                swapChainDesc.OutputHandle = m_ownerControl.Handle;
+                // The swapchain must be created with the Factory instance that was used to create the
+                // device.
+                m_swapChain = new SwapChain(m_d3dDevice.Factory, m_d3dDevice, swapChainDesc);
 
-                SampleDescription sampleDesc = swapChainDesc.SampleDescription;
-                sampleDesc.Count = 1; // No multisampling
-                sampleDesc.Quality = 0;
-                swapChainDesc.SampleDescription = sampleDesc;
+                OnWindowSizeChanged(control);
+                //SampleDescription sampleDesc = swapChainDesc.SampleDescription;
+                //sampleDesc.Count = 1; // No multisampling
+                //sampleDesc.Quality = 0;
+                //swapChainDesc.SampleDescription = sampleDesc;
 
-                swapChainDesc.SwapEffect = SwapEffect.Sequential; //required
+                //swapChainDesc.SwapEffect = SwapEffect.Sequential; //required
 
                 // Make sure the resource is flagged for use as a render target.
-                swapChainDesc.Usage = Usage.RenderTargetOutput;
-                swapChainDesc.BufferCount = 2; // Double-buffering
+                //swapChainDesc.Usage = Usage.RenderTargetOutput;
+                //swapChainDesc.BufferCount = 2; // Double-buffering
 
                 // Swap chain parameters:
-                ModeDescription modeDescription = swapChainDesc.ModeDescription;
-                modeDescription.Width = 0; // Auto size
-                modeDescription.Height = 0;
-                modeDescription.Format = Format.B8G8R8A8_UNorm;
-                modeDescription.Scaling = DisplayModeScaling.Unspecified; // Back buffer scaling
-                swapChainDesc.ModeDescription = modeDescription;
+                //ModeDescription modeDescription = swapChainDesc.ModeDescription;
+                //modeDescription.Width = 0; // Auto size
+                //modeDescription.Height = 0;
+                //modeDescription.Format = Format.B8G8R8A8_UNorm;
+                //modeDescription.Scaling = DisplayModeScaling.Unspecified; // Back buffer scaling
+                //swapChainDesc.ModeDescription = modeDescription;
 
                 // This sequence obtains the DXGI factory.
                 // First, the DXGI interface for the Direct3D device:
-                Device1 dxgiDevice = new Device1(m_d3dDevice);
+                //Device1 dxgiDevice = new Device1(m_d3dDevice);
 
                 // Then, the adapter hosting the device;
-                Adapter dxgiAdapter = dxgiDevice.Adapter;
+                //Adapter dxgiAdapter = dxgiDevice.Adapter;
 
                 // Then, the factory that created the adapter interface:
-                Factory1 dxgiFactory = dxgiAdapter.GetParent<Factory1>();
+                //Factory1 dxgiFactory = dxgiAdapter.GetParent<Factory1>();
 
                 // Finally, use the factory to create the swap chain interface:
-                m_swapChain = new SwapChain(dxgiFactory, m_d3dDevice, swapChainDesc);
+                //m_swapChain = new SwapChain(dxgiFactory, dxgiDevice, swapChainDesc);
 
                 // Ensure that DXGI does not queue more than one frame at a time. This both 
                 // reduces latency and ensures that the application will only render 
                 // after each VSync, minimizing power consumption.
-                dxgiDevice.MaximumFrameLatency = 1;
+                //dxgiDevice.MaximumFrameLatency = 1;
             }
 
             // Get the back buffer resource.
@@ -568,31 +582,21 @@ namespace Graphic
                 }
             }
         }
-        
-        //---------------------------------------------
-        // ГОВНО!
+
         //изменение размеров у контрола визуализации
-        public ReturnCode Resize(Control control)
+        public ReturnCode OnWindowSizeChanged(Control sender)
         {
-            lock (lockObject)
+            // Set the render target to null as a signal to recreate window resources.
+            try
             {
-                try
-                {
-                    if (m_ownerControl != null)
-                    {
-                        //device.Reset();
-                        DeleteAllModels();
-                        //CloseGraphics();
-                        m_ownerControl = null;
-                        Init(control);
-                    }
-                    return ReturnCode.Success;
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.ToString());
-                    return ReturnCode.Fail;
-                }
+                //m_renderTargetView = null;
+                CreateWindowSizeDependentResources(sender);
+                return ReturnCode.Success;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return ReturnCode.Fail;
             }
         }
 
@@ -750,7 +754,7 @@ namespace Graphic
                     {
                         objectToDraw.Draw(m_d3dDevice, view_matrix);
                     }
-                    m_swapChain.Present(0, PresentFlags.None);
+                    m_swapChain.Present(1, PresentFlags.None);
                     //device.Present();
                     return ReturnCode.Success;
                 }
@@ -817,6 +821,11 @@ namespace Graphic
         //-----------------------------------------------------------------------------
         public void RenderFrame()
         {
+            //-------------------
+            //КОСТЫЛЬ
+            OnWindowSizeChanged(m_ownerControl);
+            //-------------------
+
             // This function primarily uses the Direct3D 11 device context. !!!
 
             // Clear the back buffer.
@@ -833,7 +842,10 @@ namespace Graphic
             //    );
 
             // Copy the updated constant buffer from system memory to video memory.
-            m_d3dContext.UpdateSubresource(null, m_constantBuffer, 0);
+            DataStream data = new DataStream(System.Runtime.InteropServices.Marshal.SizeOf(m_constantBufferData), true, true);
+            data.Write<ModelViewProjectionConstantBuffer>(m_constantBufferData);
+            DataBox source = new DataBox(0, 0, data);
+            m_d3dContext.UpdateSubresource(source, m_constantBuffer, 0);
 
             // Send vertex data to the Input Assembler stage.
             m_d3dContext.InputAssembler.SetVertexBuffers(
@@ -872,13 +884,5 @@ namespace Graphic
             // Present the frame by swapping the back buffer to the screen.
             m_swapChain.Present(1, PresentFlags.None);
         }
-
-        void OnWindowSizeChanged(Control sender)
-        {
-            // Set the render target to null as a signal to recreate window resources.
-            m_renderTargetView = null;
-            CreateWindowSizeDependentResources(sender);
-        }
-
     }
 }

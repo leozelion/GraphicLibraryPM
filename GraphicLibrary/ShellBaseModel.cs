@@ -53,26 +53,35 @@ namespace Graphic
 
         protected Buffer createVertexBuffer(h_VertexDeclarations.h_PositionNormalVertex[] surface)
         {
-            DataStream vertexBufferData = new DataStream(surface, true, true);
-            vertexBufferData.WriteRange(surface);
-
-            BufferDescription vertexBufferDesc = new BufferDescription();
-            vertexBufferDesc.BindFlags = BindFlags.VertexBuffer;
-            vertexBufferDesc.SizeInBytes = h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes * surface.Length;
-
-            return new Buffer(device, vertexBufferData, vertexBufferDesc);
+            
+            DataStream vertexBufferData = new DataStream(h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes * surface.Length, true, true);
+            vertexBufferData.WriteRange<h_VertexDeclarations.h_PositionNormalVertex>(surface);
+            vertexBufferData.Position = 0;
+            return new Buffer(
+                device, 
+                vertexBufferData, 
+                h_VertexDeclarations.h_PositionNormalVertex.SizeInBytes * surface.Length, 
+                ResourceUsage.Default, 
+                BindFlags.VertexBuffer, 
+                CpuAccessFlags.None,
+                ResourceOptionFlags.None, 
+                0);
         }
 
         protected Buffer createIndexBuffer(short[] surface)
         {
-            DataStream indexBufferData = new DataStream(surface, true, true);
+            DataStream indexBufferData = new DataStream(sizeof(ushort) * surface.Length, true, true);
             indexBufferData.WriteRange(surface);
-
-            BufferDescription indexBufferDesc = new BufferDescription();
-            indexBufferDesc.BindFlags = BindFlags.IndexBuffer;
-            indexBufferDesc.SizeInBytes = sizeof(ushort) * surface.Length;
-
-            return new Buffer(device, indexBufferData, indexBufferDesc);
+            indexBufferData.Position = 0;
+            return new Buffer(
+                device,
+                indexBufferData,
+                sizeof(ushort) * surface.Length,
+                ResourceUsage.Default,
+                BindFlags.VertexBuffer,
+                CpuAccessFlags.None,
+                ResourceOptionFlags.None,
+                0);
         }
 
         //отрисовка

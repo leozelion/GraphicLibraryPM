@@ -690,7 +690,11 @@ namespace Graphic
         }
 
         //private Image createImage(Control c)
-        //{
+        
+            
+            //{ TEXTURE2D --->> TO FILE or SAVEtoFILE .... !!!
+
+
         //    Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(CaptureScreen(), SlimDX.Direct3D9.ImageFileFormat.Png));
 
         //    //Graphics graphicsPanel = c.CreateGraphics();
@@ -837,7 +841,7 @@ namespace Graphic
             {
                 //moduleGraphicLibrary.device.Viewport = new SlimDX.Direct3D9.Viewport(0, 0, splitContainer1.Panel2.ClientSize.Width, splitContainer1.Panel2.ClientSize.Height, 0, 1);
                 //moduleGraphicLibrary.Draw(splitContainer1.Panel2.ClientSize);
-                moduleGraphicLibrary.Resize(splitContainer1.Panel2);
+                moduleGraphicLibrary.OnWindowSizeChanged(splitContainer1.Panel2);
                 CreateShells();
             }
         }
