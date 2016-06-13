@@ -1,4 +1,4 @@
-﻿namespace Graphic
+﻿namespace GraphicLibrary
 {
     partial class Form1
     {
@@ -1593,7 +1593,6 @@
             this.Text = "Модуль Визуализации";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

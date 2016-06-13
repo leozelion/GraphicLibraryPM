@@ -13,15 +13,16 @@ using System.Threading;
 using SlimDX;
 using System.IO;
 
-namespace Graphic
+namespace GraphicLibrary
 {
     public partial class Form1 : Form
     {
         //графический модуль
-        GraphicLibrary moduleGraphicLibrary;
-        
+        //GraphicLibrary moduleGraphicLibrary;
+        GraphicClass m_Graphic;
+
         //оболочка
-        ShellBaseModel shell;
+        //ShellBaseModel shell;
 
         //положение курсора мыши
         Point mousePosition;
@@ -43,8 +44,10 @@ namespace Graphic
         //конструктор
         public Form1()
         {
-            /*AssemblyGenerator assgen = new AssemblyGenerator("0");*/
+            m_Graphic = new GraphicClass();
             InitializeComponent();
+            m_Graphic.Initialize(splitContainer1.Panel2, trackBar1.Minimum, trackBar1.Maximum, Color.LightSkyBlue);
+            /*AssemblyGenerator assgen = new AssemblyGenerator("0");*/
             //подписка на событие колеса мыши (для зумирования модели)
             this.MouseWheel += new MouseEventHandler(Form1_MouseWheel);
 
@@ -96,22 +99,24 @@ namespace Graphic
             textBoxEdgesYh.Text = "1";
 
             //подключение графического модуля
-            moduleGraphicLibrary = new GraphicLibrary();
-            ReturnCode rc = moduleGraphicLibrary.Init(this.splitContainer1.Panel2);
-            Console.WriteLine(rc);
-            if (rc != ReturnCode.Success)
-            {
-                MessageBox.Show("Ошибка при подключении графического модуля");
-                return;
-            }
+            //moduleGraphicLibrary = new GraphicLibrary();
+            //ReturnCode rc = moduleGraphicLibrary.Init(this.splitContainer1.Panel2);
+            //Console.WriteLine(rc);
+            //if (rc != ReturnCode.Success)
+            //{
+            //    MessageBox.Show("Ошибка при подключении графического модуля");
+            //    return;
+            //}
 
 
-            //создание оболочек
-            CreateShells();
+            ////создание оболочек
+            //CreateShells();
 
             //создание потока отрисовки
             threadDrawing = new Thread(new ThreadStart(threadDrawingEntryPoint));
             threadDrawing.Start();
+            //m_Graphic.Frame();
+            
         }
 
         /*
@@ -147,42 +152,42 @@ namespace Graphic
 
         } */
 
-
         //вспомогательная функция для преобразования строкового значения в число с плавающей точкой
         bool GetValue(string value, ref float result)
         {
-            try
-            {
-                result = Convert.ToSingle(value); 
-                return true;
-            }
-            catch
-            {
-                if (value.Contains(','))
-                {
-                    try
-                    {
-                        result = Convert.ToSingle(value.Replace(',', '.'));
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        result = Convert.ToSingle(value.Replace('.', ','));
-                        return true;
-                    }
-                    catch
-                    {
-                        return false;
-                    }
-                }
-            }
+            return float.TryParse(value, out result);
+            //try
+            //{
+            //    result = Convert.ToSingle(value); 
+            //    return true;
+            //}
+            //catch
+            //{
+            //    if (value.Contains(','))
+            //    {
+            //        try
+            //        {
+            //            result = Convert.ToSingle(value.Replace(',', '.'));
+            //            return true;
+            //        }
+            //        catch
+            //        {
+            //            return false;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        try
+            //        {
+            //            result = Convert.ToSingle(value.Replace('.', ','));
+            //            return true;
+            //        }
+            //        catch
+            //        {
+            //            return false;
+            //        }
+            //    }
+            //}
         }
 
         //создание оболочек для отображения
@@ -190,7 +195,7 @@ namespace Graphic
         {
             try
             {
-                moduleGraphicLibrary.DeleteAllModels();
+                //moduleGraphicLibrary.DeleteAllModels();
 
                 float radius_x = 0;
                 float radius_y = 0;
@@ -251,7 +256,7 @@ namespace Graphic
 
                 if (tabControl1.SelectedIndex == 0)
                 {
-                    shell = new ShellRectangularModelWithEdgesNew();
+                    //shell = new ShellRectangularModelWithEdgesNew();
                     if (!GetValue(textBoxRxPlane.Text, ref radius_x))
                     {
                         MessageBox.Show("Ошибка в поле <радиус по оси X>");
@@ -278,7 +283,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellRectangularModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_x, radius_y, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text),_ProgFun))
+                    //if (!((ShellRectangularModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_x, radius_y, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text),_ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании прямоугольной оболочки");
                         return false;
@@ -287,7 +292,7 @@ namespace Graphic
 
                 if (tabControl1.SelectedIndex == 1)
                 {
-                    shell = new ShellCylindarModelWithEdgesNew();
+                    //shell = new ShellCylindarModelWithEdgesNew();
                     if (!GetValue(textBoxRyCylindric.Text, ref radius_y))
                     {
                         MessageBox.Show("Ошибка в поле <радиус по оси Y>");
@@ -309,7 +314,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellCylindarModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_y, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
+                    //if (!((ShellCylindarModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_y, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании цилиндрической оболочки");
                         return false;
@@ -317,7 +322,7 @@ namespace Graphic
                 }
                 if (tabControl1.SelectedIndex == 2)
                 {
-                    shell = new ShellConusModelWithEdgesNew();
+                    //shell = new ShellConusModelWithEdgesNew();
                     if (!GetValue(textBoxAngleCone.Text, ref conus_angle))
                     {
                         MessageBox.Show("Ошибка в поле <угол конусности>");
@@ -344,7 +349,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellConusModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, conus_angle, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
+                    //if (!((ShellConusModelWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, conus_angle, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании конической оболочки");
                         return false;
@@ -352,7 +357,7 @@ namespace Graphic
                 }
                 if (tabControl1.SelectedIndex == 3)
                 {
-                    shell = new ShellSphereModellWithEdgesNew();
+                    //shell = new ShellSphereModellWithEdgesNew();
                     if (!GetValue(textBoxRadiusSpheric.Text, ref radius_x))
                     {
                         MessageBox.Show("Ошибка в поле <радиус>");
@@ -379,7 +384,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellSphereModellWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_x, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
+                    //if (!((ShellSphereModellWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, radius_x, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании сферической оболочки");
                         return false;
@@ -387,7 +392,7 @@ namespace Graphic
                 }
                 if (tabControl1.SelectedIndex == 4)
                 {
-                    shell = new ShellTorusModellWithEdgesNew();
+                    //shell = new ShellTorusModellWithEdgesNew();
                     if (!GetValue(textBoxRadiusTorus.Text, ref radius_x))
                     {
                         MessageBox.Show("Ошибка в поле <радиус>");
@@ -419,7 +424,7 @@ namespace Graphic
                         return false;
                     }
 
-                    if (!((ShellTorusModellWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, d, radius_x, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
+                    //if (!((ShellTorusModellWithEdgesNew)(shell)).CreateModel(moduleGraphicLibrary.m_d3dDevice, d, radius_x, start_x, size_x, size_y, height, (int)nhy, (int)nhx, hwy, hwx, sizeRebroY * size_x, sizeRebroX * size_y, Function, 0, (float)Convert.ToDouble(textBox14.Text), _ProgFun))
                     {
                         MessageBox.Show("Ошибка при создании торообразной оболочки");
                         return false;
@@ -428,11 +433,11 @@ namespace Graphic
 
 
 
-                moduleGraphicLibrary.AddModel(shell);
+                //moduleGraphicLibrary.AddModel(shell);
 
-                if (checkBox2.Checked)
-                    shell.SetAutoAnimation(true);
-                shell.SetAnimationWeight((float)trackBar2.Value / trackBar2.Maximum);
+                //if (checkBox2.Checked)
+                 //   shell.SetAutoAnimation(true);
+                //shell.SetAnimationWeight((float)trackBar2.Value / trackBar2.Maximum);
             }
             catch
             {
@@ -444,15 +449,17 @@ namespace Graphic
         //отработка события колеса мыши
         void Form1_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (moduleGraphicLibrary != null)
+            if (m_Graphic != null)
             {
+                int dist;
                 if (e.Delta < 0)
-                    moduleGraphicLibrary.ZoomModel(1); //1.2f
+                    dist = m_Graphic.ZoomModel(1);
                 else
-                 moduleGraphicLibrary.ZoomModel(-1); //0.8f
-                if (moduleGraphicLibrary.Camera_distance <= trackBar1.Maximum)
+                    dist = m_Graphic.ZoomModel(-1);
+
+                if (dist <= trackBar1.Maximum)
                 {
-                    trackBar1.Value = (int)(moduleGraphicLibrary.Camera_distance);
+                    trackBar1.Value = dist;
                 }
             }
         }
@@ -463,9 +470,9 @@ namespace Graphic
         {
             while (!doExit)
             {
-                moduleGraphicLibrary.Draw();
+                m_Graphic.Frame();
                 //тормознём поток чтобы не отрисовывать слишком часто
-                Thread.Sleep(20);
+                Thread.Sleep(100);
             }
         }
 
@@ -483,133 +490,31 @@ namespace Graphic
         {
             if ((e.Button == MouseButtons.Right) || (e.Button == MouseButtons.Left))
             {
-                #region поворот модели
-                Size clientSize = this.ClientSize;
+                Point stopPos = new Point(e.X, e.Y);
+
+                float yaw, pitch, roll;
+                m_Graphic.RotateModel(splitContainer1.Panel2, mousePosition, stopPos, out yaw, out pitch, out roll);
                 
-                float startX = 1 - mousePosition.X / (clientSize.Width / 2f); // переводим X из [0..W] в [-1..1]
-                float startY = mousePosition.Y / (clientSize.Height / 2f) - 1; // то же самое
-                float startZ = (float)Math.Sqrt(Math.Abs(1 - startX * startX - startY * startY)); // получаем расстояние от 0 до (x,y)
-                                                                                                  // как будто в квадрате со стороной = 2
-
-                float stopX = 1 - e.X / (clientSize.Width / 2f);
-                float stopY = e.Y / (clientSize.Height / 2f) - 1;
-                float stopZ = (float)Math.Sqrt(Math.Abs(1 - stopX * stopX - stopY * stopY));
-
-                // получили вектора трёхмерного пространства,
-                // где Z - радиус сферы, которая получается из окружности вектора (x,y)
-                Vector3 startV = new Vector3(startX, startY, startZ);
-                Vector3 stopV = new Vector3(stopX, stopY, stopZ);
-                startV.Normalize();
-                stopV.Normalize();
-
-                Vector3 rotationAxis = Vector3.Cross(startV, stopV); // векторное произведение
-                // получили вектор, перпендикулярный плоскости, образуемой векторами startV, stopV
-                rotationAxis.Normalize();
-
-                float dot = Vector3.Dot(startV, stopV); // скалярное произведение
-                // т.к. векторы нормализованные, получаем чистый cos() угла между ними
-                if (dot > 1.0f) dot = 1.0f; // подстраховка..
-                if (dot < -1.0f) dot = -1.0f; // ..не более чем
-                float rotationAngle = (float)Math.Acos(dot);
-                moduleGraphicLibrary.RotateModel(rotationAxis, rotationAngle);
-
-                #endregion
-
-                Vector3 ypr;
-                quaternion2Euler(moduleGraphicLibrary.Orientation, out ypr, RotSeq.yxz);
                 // получили углы Эйлера
-                numUpDownTeta.Value = (decimal)(ypr.X * 180 / Math.PI);
-                numUpDownPhi.Value = (decimal)(ypr.Y * 180 / Math.PI);
-                numUpDownPsi.Value = (decimal)(ypr.Z * 180 / Math.PI);
+                numUpDownTeta.Value = (decimal)(yaw * 180 / Math.PI);
+                numUpDownPhi.Value = (decimal)(pitch * 180 / Math.PI);
+                numUpDownPsi.Value = (decimal)(roll * 180 / Math.PI);
 
                 //запомнить положение курсора мыши
                 mousePosition = e.Location;
             }
         }
 
-        enum RotSeq { zyx, zxy, yxz, yzx, xyz, xzy};
-        void threeaxisrot(double r11, double r12, double r21, double r31, double r32, out Vector3 res)
-        {
-            res.X = (float)Math.Atan2(r31, r32);
-            res.Y = (float)Math.Asin(r21);
-            res.Z = (float)Math.Atan2(r11, r12);
-        }
-        void quaternion2Euler(Quaternion q, out Vector3 ypr, RotSeq rotSeq)
-        {
-            Vector3 res = new Vector3(0);
-            switch (rotSeq)
-            {
-                case RotSeq.zyx:
-                    threeaxisrot(2 * (q.X * q.Y + q.W * q.Z),
-                                   q.W * q.W + q.X * q.X - q.Y * q.Y - q.Z * q.Z,
-                                  -2 * (q.X * q.Z - q.W * q.Y),
-                                   2 * (q.Y * q.Z + q.W * q.X),
-                                   q.W * q.W - q.X * q.X - q.Y * q.Y + q.Z * q.Z,
-                                   out res);
-                    break;
-                case RotSeq.zxy:
-                    threeaxisrot(-2 * (q.X * q.Y - q.W * q.Z),
-                                    q.W * q.W - q.X * q.X + q.Y * q.Y - q.Z * q.Z,
-                                    2 * (q.Y * q.Z + q.W * q.X),
-                                   -2 * (q.X * q.Z - q.W * q.Y),
-                                    q.W * q.W - q.X * q.X - q.Y * q.Y + q.Z * q.Z,
-                                    out res);
-                    break;
-                case RotSeq.yxz: //то что нужно!
-                    threeaxisrot(2 * (q.X * q.Z + q.W * q.Y),
-                                   q.W * q.W - q.X * q.X - q.Y * q.Y + q.Z * q.Z,
-                                  -2 * (q.Y * q.Z - q.W * q.X),
-                                   2 * (q.X * q.Y + q.W * q.Z),
-                                   q.W * q.W - q.X * q.X + q.Y * q.Y - q.Z * q.Z,
-                                   out res);
-                    break;
-                case RotSeq.yzx:
-                    threeaxisrot(-2 * (q.X * q.Z - q.W * q.Y),
-                                    q.W * q.W + q.X * q.X - q.Y * q.Y - q.Z * q.Z,
-                                    2 * (q.X * q.Y + q.W * q.Z),
-                                   -2 * (q.Y * q.Z - q.W * q.X),
-                                    q.W * q.W - q.X * q.X + q.Y * q.Y - q.Z * q.Z,
-                                    out res);
-                    break;
-                case RotSeq.xyz:
-                    threeaxisrot(-2 * (q.Y * q.Z - q.W * q.X),
-                                  q.W * q.W - q.X * q.X - q.Y * q.Y + q.Z * q.Z,
-                                  2 * (q.X * q.Z + q.W * q.Y),
-                                 -2 * (q.X * q.Y - q.W * q.Z),
-                                  q.W * q.W + q.X * q.X - q.Y * q.Y - q.Z * q.Z,
-                                  out res);
-                    break;
-                case RotSeq.xzy:
-                    threeaxisrot(2 * (q.Y * q.Z + q.W * q.X),
-                                   q.W * q.W - q.X * q.X + q.Y * q.Y - q.Z * q.Z,
-                                  -2 * (q.X * q.Y - q.W * q.Z),
-                                   2 * (q.X * q.Z + q.W * q.Y),
-                                   q.W * q.W + q.X * q.X - q.Y * q.Y - q.Z * q.Z,
-                                   out res);
-                    break;
-                default:
-                    break;
-            }
-            ypr = res;
-        }
-
-        //отработка события закрытия формы
+        //обработка события закрытия формы
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //устанавливаем флаг выхода из приложения
             doExit = true;
         }
 
-        //отработка события изменения размеров формы
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            //if (moduleGraphicLibrary != null)
-            //    moduleGraphicLibrary.Draw();
-            //    moduleGraphicLibrary.Resize(splitContainer1.Panel2);
-            //moduleGraphicLibrary.device.Viewport = new SlimDX.Direct3D9.Viewport(0, 0, moduleGraphicLibrary.device.GetBackBuffer(0, 0).Description.Width, moduleGraphicLibrary.device.GetBackBuffer(0, 0).Description.Height);
-            //CreateShells();
-        }
-
+        ////////////////////////////////////////////////////////////////////
+        ////////////////////ХРЕНЬ///////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////
         //функция прогиба
         float Function(float x, float y)
         {
@@ -627,19 +532,19 @@ namespace Graphic
         //отработка нажатия кнопки "применить"
         private void button2_Click(object sender, EventArgs e)
         {
-            CreateShells();
+            //CreateShells();
         }
 
         //отработка события смены типа оболочки
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CreateShells();
+            //CreateShells();
         }
 
         //отработка события включения автоматической анимации
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            shell.SetAutoAnimation(((CheckBox)sender).Checked);
+            //shell.SetAutoAnimation(((CheckBox)sender).Checked);
             
         }
 
@@ -650,14 +555,14 @@ namespace Graphic
             if (animateProgFunMass != null)
             {
                 _ProgFun = animateProgFunMass[trackBar2.Value];
-                CreateShells();
+            //    CreateShells();
             }
         }
 
         private void numUpDownTeta_ValueChanged(object sender, EventArgs e)
         {
             if (numUpDownTeta.Focused)
-                moduleGraphicLibrary.Orientation = Quaternion.RotationYawPitchRoll(
+                m_Graphic.RotateModel(
                            (float)(numUpDownPsi.Value) * RADIANS,
                            (float)(numUpDownPhi.Value) * RADIANS,
                            (float)(numUpDownTeta.Value) * RADIANS
@@ -667,7 +572,7 @@ namespace Graphic
         private void numUpDownPhi_ValueChanged(object sender, EventArgs e)
         {
             if (numUpDownPhi.Focused)
-                moduleGraphicLibrary.Orientation = Quaternion.RotationYawPitchRoll(
+                m_Graphic.RotateModel(
                     (float)(numUpDownPsi.Value) * RADIANS,
                     (float)(numUpDownPhi.Value) * RADIANS,
                     (float)(numUpDownTeta.Value) * RADIANS
@@ -677,7 +582,7 @@ namespace Graphic
         private void numUpDownPsi_ValueChanged(object sender, EventArgs e)
         {
             if (numUpDownPsi.Focused)
-            moduleGraphicLibrary.Orientation = Quaternion.RotationYawPitchRoll(
+                m_Graphic.RotateModel(
                     (float)(numUpDownPsi.Value) * RADIANS,
                     (float)(numUpDownPhi.Value) * RADIANS,
                     (float)(numUpDownTeta.Value) * RADIANS
@@ -686,7 +591,7 @@ namespace Graphic
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            moduleGraphicLibrary.Camera_distance = trackBar1.Value;
+            m_Graphic.SetCameraDistance(trackBar1.Value);
         }
 
         //private Image createImage(Control c)
@@ -711,40 +616,39 @@ namespace Graphic
         //----------------------------------------------------------
         private void jPEGFormatToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Bitmap bitmap = new Bitmap(
-            //    //new DataStream(moduleGraphicLibrary.m_d3dDevice.ImmediateContext.StreamOutput, true, false);
-            //    //moduleGraphicLibrary.m_d3dDevice.ImmediateContext.StreamOutput
-
-            //    //.FromSwapChain(null, 0));//(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Jpg)
-            //    );
-            //SaveFileDialog dialog = new SaveFileDialog();
-            //dialog.Filter = "Jpeg Image|*.jpg";
-            //dialog.Title = "Сохранить рисунок";
-            //dialog.ShowDialog();
-            //if (dialog.FileName != string.Empty)
-            //    bitmap.Save(dialog.FileName,ImageFormat.Jpeg);
+            Bitmap bitmap = new Bitmap(m_Graphic.GetImage(SlimDX.Direct3D11.ImageFileFormat.Jpg));
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Jpeg Image|*.jpg";
+            dialog.Title = "Сохранить рисунок";
+            dialog.AddExtension = true;
+            dialog.FileName = "shell_model";
+            dialog.ShowDialog();
+            if (dialog.FileName != string.Empty)
+                bitmap.Save(dialog.FileName, ImageFormat.Jpeg);
         }
 
         private void pNGToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Png));
-            //SaveFileDialog dialog = new SaveFileDialog();
-            //dialog.Filter = "Png Image|*.png";
-            //dialog.Title = "Сохранить рисунок";
-            //dialog.ShowDialog();
-            //if (dialog.FileName != string.Empty)
-            //    bitmap.Save(dialog.FileName, ImageFormat.Png);
+            Bitmap bitmap = new Bitmap(m_Graphic.GetImage(SlimDX.Direct3D11.ImageFileFormat.Png));
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Png Image|*.png";
+            dialog.Title = "Сохранить рисунок";
+            dialog.FileName = "shell_model";
+            dialog.ShowDialog();
+            if (dialog.FileName != string.Empty)
+                bitmap.Save(dialog.FileName, ImageFormat.Png);
         }
 
         private void bitmapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Bitmap bitmap = new Bitmap(SlimDX.Direct3D9.Surface.ToStream(moduleGraphicLibrary.GetSurface(), SlimDX.Direct3D9.ImageFileFormat.Bmp));
-            //SaveFileDialog dialog = new SaveFileDialog();
-            //dialog.Filter = "Bitmap Image|*.bmp";
-            //dialog.Title = "Сохранить рисунок";
-            //dialog.ShowDialog();
-            //if (dialog.FileName != string.Empty)
-            //    bitmap.Save(dialog.FileName, ImageFormat.Bmp);
+            Bitmap bitmap = new Bitmap(m_Graphic.GetImage(SlimDX.Direct3D11.ImageFileFormat.Bmp));
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Bitmap Image|*.bmp";
+            dialog.Title = "Сохранить рисунок";
+            dialog.FileName = "shell_model";
+            dialog.ShowDialog();
+            if (dialog.FileName != string.Empty)
+                bitmap.Save(dialog.FileName, ImageFormat.Bmp);
         }
 
         private void gIFToolStripMenuItem_Click(object sender, EventArgs e)
@@ -837,12 +741,10 @@ namespace Graphic
 
         private void splitContainer1_Panel2_Resize(object sender, EventArgs e)
         {
-            if (moduleGraphicLibrary != null)
+            if (m_Graphic != null)
             {
-                //moduleGraphicLibrary.device.Viewport = new SlimDX.Direct3D9.Viewport(0, 0, splitContainer1.Panel2.ClientSize.Width, splitContainer1.Panel2.ClientSize.Height, 0, 1);
-                //moduleGraphicLibrary.Draw(splitContainer1.Panel2.ClientSize);
-                moduleGraphicLibrary.OnWindowSizeChanged(splitContainer1.Panel2);
-                CreateShells();
+                m_Graphic.Resize(splitContainer1.Panel2);
+                //CreateShells();
             }
         }
 
@@ -854,17 +756,17 @@ namespace Graphic
 
         private void createPictureToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            moduleGraphicLibrary.Orientation = Quaternion.RotationYawPitchRoll(0f,0f,0f);
+            m_Graphic.RotateModel(0f,0f,0f);
             numUpDownPhi.Value = 0;
             numUpDownPsi.Value = 0;
             numUpDownTeta.Value = 0;
-            moduleGraphicLibrary.Camera_distance = 50;
+            m_Graphic.SetCameraDistance(50);
             trackBar1.Value = 50;
         }
 
         private void whiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            moduleGraphicLibrary.BackGroundColor = Color.White;
+            m_Graphic.BackgroundColor = Color.White;
             label1.BackColor= Color.White;
             label22.BackColor = Color.White;
             label25.BackColor = Color.White;
@@ -873,7 +775,7 @@ namespace Graphic
 
         private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            moduleGraphicLibrary.BackGroundColor = Color.LightSkyBlue;
+            m_Graphic.BackgroundColor = Color.LightSkyBlue;
             label1.BackColor = Color.LightSkyBlue;
             label22.BackColor = Color.LightSkyBlue;
             label25.BackColor = Color.LightSkyBlue;

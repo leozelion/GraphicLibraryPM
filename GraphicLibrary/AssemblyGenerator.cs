@@ -7,7 +7,7 @@ using System.Reflection;
 using Microsoft.CSharp;
 
 
-namespace Graphic
+namespace GraphicLibrary
 {
     public class AssemblyGenerator
     {

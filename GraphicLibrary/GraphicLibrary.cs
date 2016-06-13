@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+//
 using SlimDX;
 using SlimDX.Direct3D11;
-//
 using SlimDX.D3DCompiler;
 using SlimDX.DXGI;
 using Device = SlimDX.Direct3D11.Device;
@@ -13,7 +13,7 @@ using Buffer = SlimDX.Direct3D11.Buffer;
 //
 
 
-namespace Graphic
+namespace GraphicLibrary
 {
     //коды возврата интерфейсных методов
     public enum ReturnCode
@@ -387,27 +387,7 @@ namespace Graphic
         //-----------------------------------------------------------------------------
         void CreateShaders()
         {
-            using (var shader_byte_code = ShaderBytecode.CompileFromFile("VertexShader3.fx", "VShader", "vs_4_0", ShaderFlags.None, EffectFlags.None))
-            {
-                m_vertexShader = new VertexShader(m_d3dDevice, shader_byte_code);
-
-                // This call allocates a device resource and stores the input layout in 
-                // graphics memory.
-                m_inputLayout = new InputLayout(m_d3dDevice, shader_byte_code, h_VertexDeclarations.PositionNormalVertexElements);
-
-                // Create constant buffer:
-                BufferDescription constantBufferDesc = new BufferDescription();
-                constantBufferDesc.BindFlags = BindFlags.ConstantBuffer;
-                constantBufferDesc.SizeInBytes = System.Runtime.InteropServices.Marshal.SizeOf(m_constantBufferData);
-
-                // This call allocates a device resource to store constant data for the 
-                // vertex shader. The actual constant buffer data will be sent later.
-                m_constantBuffer = new Buffer(m_d3dDevice, constantBufferDesc);
-            }
-
-            using (var bytecode = ShaderBytecode.CompileFromFile("PixelShader2.fx", "PShader", "ps_4_0", ShaderFlags.None, EffectFlags.None))
-                m_pixelShader = new PixelShader(m_d3dDevice, bytecode);
-
+            
 
             //string[] resource_names = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 

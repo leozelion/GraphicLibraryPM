@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
-namespace Graphic
+namespace GraphicLibrary
 {
     static class Program
     {
@@ -16,9 +14,6 @@ namespace Graphic
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            Console.Clear();
-            Console.WriteLine("Do you really want to EXIT?\nPress Enter");
-            //Console.ReadKey();
         }
     }
 }

@@ -6,7 +6,7 @@ using Resource = SlimDX.Direct3D11.Resource;
 using Buffer = SlimDX.Direct3D11.Buffer;
 using System.Collections.Generic;
 
-namespace Graphic
+namespace GraphicLibrary
 {
     public abstract class ShellBaseModel
     {

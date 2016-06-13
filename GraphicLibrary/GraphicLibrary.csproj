@@ -6,7 +6,7 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{CF245FCB-3DC0-4E8F-9D4F-BA7DC880B030}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GraphicLibrary</RootNamespace>
     <AssemblyName>GraphicLibrary</AssemblyName>
@@ -73,6 +73,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="SlimDX, Version=2.0.9.42, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
@@ -101,6 +104,11 @@
     <Compile Include="AssemblyGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CameraClass.cs" />
+    <Compile Include="D3DClass.cs" />
+    <Compile Include="GraphicClass.cs" />
+    <Compile Include="ModelClass.cs" />
+    <Compile Include="ShaderClass.cs" />
     <Compile Include="ShellTorusModel.cs" />
     <Compile Include="ShellSphereModel.cs" />
     <Compile Include="ShellConusModel.cs" />

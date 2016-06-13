@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Graphic
+namespace GraphicLibrary
 {
     public class h_VertexDeclarations
     {

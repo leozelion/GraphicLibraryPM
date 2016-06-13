@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GraphicLibrary.exe" size="104856">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GraphicLibrary.exe" size="109976">
       <assemblyIdentity name="GraphicLibrary" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>N0M21OLMyRKVyTCra64Zg3FaMb/5eBWYC7uEgIV5gWM=</dsig:DigestValue>
+        <dsig:DigestValue>mpiBtOQETXQMoIYRz0kTO9ChmYK0YvLkZWVjcSdMToA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -83,13 +83,13 @@
       <dsig:DigestValue>ZfsQbKc5vZzoGdZ2Pu5qlV+w24mh8TlIo/GMeOgrZH4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="VertexShader3.fx" size="1728">
+  <file name="VertexShader3.fx" size="1690">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>joLO+hCchCsAVjPtN26aOxVnEhQ3Mn5sY+7XG2z+dqg=</dsig:DigestValue>
+      <dsig:DigestValue>GAfy463o4OIZrUNniwLTZFrLxsiw5nc+bXcMtbXVfJo=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
